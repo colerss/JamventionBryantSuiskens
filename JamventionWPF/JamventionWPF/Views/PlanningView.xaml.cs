@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JamventionWPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PlanningView.xaml
     /// </summary>
-    public partial class ParticipantsView : Window
+    public partial class PlanningView : Window
     {
-        public ParticipantsView()
+        public PlanningView()
         {
             InitializeComponent();
         }
