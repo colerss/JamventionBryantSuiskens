@@ -63,12 +63,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\ParticipantDetailView.xaml.cs">
+      <DependentUpon>ParticipantDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlanningView.xaml.cs">
       <DependentUpon>PlanningView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomsWindow.xaml.cs">
-      <DependentUpon>RoomsWindow.xaml</DependentUpon>
+    <Compile Include="Views\RoomAddView.xaml.cs">
+      <DependentUpon>RoomAddView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RoomsView.xaml.cs">
+      <DependentUpon>RoomsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ParticipantDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ParticipantsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,7 +97,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RoomsWindow.xaml">
+    <Page Include="Views\RoomAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

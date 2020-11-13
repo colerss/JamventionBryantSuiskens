@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace JamventionWPF.Views
 {
     /// <summary>
-    /// Interaction logic for RoomsWindow.xaml
+    /// Interaction logic for ParticipantDetailView.xaml
     /// </summary>
-    public partial class RoomsWindow : Window
+    public partial class ParticipantDetailView : Window
     {
-        public RoomsWindow()
+        public ParticipantDetailView()
         {
             InitializeComponent();
         }

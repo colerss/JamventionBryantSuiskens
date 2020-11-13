@@ -45,7 +45,23 @@
             </TabItem>
         </TabControl>
         <GroupBox Grid.Column="4" Grid.ColumnSpan="2" Margin="5" Background="White" Header="Nieuwe gast toevoegen">
-            
+            <ScrollViewer>
+            <StackPanel>
+                <TextBox materialDesign:HintAssist.Hint="Voornaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox materialDesign:HintAssist.Hint="Achternaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox materialDesign:HintAssist.Hint="Telefoon Nummer" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <ComboBox materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="5">Vegetariër
+                        </CheckBox>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="5" Content="Toevoegen" />
+                </StackPanel>
+            </ScrollViewer>
         </GroupBox>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Margin="5" Content="Kamers" />
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Lessen" />
