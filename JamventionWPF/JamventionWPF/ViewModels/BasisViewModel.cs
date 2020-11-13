@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace JamventionWPF.ViewModels
@@ -17,6 +19,22 @@ namespace JamventionWPF.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public abstract string this[string columnName] { get; }
+
+        public BasisViewModel()
+        {
+            this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
+        }
+
+        public RelayCommand<Window> CloseWindowCommand { get; private set; }
+
+
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
 
         public bool isGeldig()
         {

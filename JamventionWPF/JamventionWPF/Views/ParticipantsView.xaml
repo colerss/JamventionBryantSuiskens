@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF"
+        x:Name="Participants"
         Background="Gray"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -57,15 +58,16 @@
                     </ComboBox>
                     <ComboBox materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="5">Vegetariër
+                    <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,0,0,8">Vegetariër
                         </CheckBox>
                     <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="5" Content="Toevoegen" />
                 </StackPanel>
             </ScrollViewer>
         </GroupBox>
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Margin="5" Content="Kamers" />
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Lessen" />
-        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="5" Margin="5" Content="Sluiten" />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Margin="5" Content="Kamers" Command="{Binding}" CommandParameter="Rooms"  />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Lessen"  Command="{Binding}" CommandParameter="Lessons" />
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="5" Margin="5" Content="Sluiten" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
+        CommandParameter="{Binding ElementName=Participants}" />
     </Grid>
    
 </Window>
