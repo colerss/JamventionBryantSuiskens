@@ -52,8 +52,9 @@
                 <TextBox materialDesign:HintAssist.Hint="Achternaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox materialDesign:HintAssist.Hint="Telefoon Nummer" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <ComboBox materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
                     <ComboBox materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">

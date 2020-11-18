@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JamventionDAL
 {
+    [Table("Guests", Schema ="JAM")]
     public class Guest
     {
         [Key]
@@ -31,12 +33,14 @@ namespace JamventionDAL
         public int RoleID { get; set; }
         [Required]
         public int InvoiceId { get; set; }
+        public int RoomID { get; set; }
 
         //navprops
 
         public Residence Residence { get; set; }
         public GuestRole GuestRole { get; set; }
         public Invoice Invoice { get; set; }
+        public Room Room { get; set; }
         public ICollection<WorkshopModel> WorkshopModels { get; set; }
         public ICollection<WorkshopParticipant> WorkshopParticipants { get; set; }
         public Workshop WorkshopTeacher { get; set; }

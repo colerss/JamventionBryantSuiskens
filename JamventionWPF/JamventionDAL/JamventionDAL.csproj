@@ -58,18 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseOperations.cs" />
+    <Compile Include="JamventionEntities.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\GuestRole.cs" />
     <Compile Include="Models\Guest.cs" />
-    <Compile Include="Models\LocalRoom.cs" />
     <Compile Include="Models\Nationality.cs" />
-    <Compile Include="Models\Payments.cs" />
-    <Compile Include="Models\OtherRoom.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Residence.cs" />
     <Compile Include="Models\TicketType.cs" />
-    <Compile Include="Models\RoomOccupancy.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomType.cs" />
     <Compile Include="Models\TimeSlot.cs" />
