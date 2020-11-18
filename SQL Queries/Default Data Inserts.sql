@@ -1,4 +1,4 @@
-INSERT INTO Jam.Roles
+INSERT INTO JAM.GuestRoles
  
 (RoleName)
  
