@@ -55,11 +55,11 @@
                     <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <ComboBox materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <CheckBox x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,0,0,8">Vegetariër
+                    <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8">Vegetariër
                         </CheckBox>
                     <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="5" Content="Toevoegen" />
                 </StackPanel>
