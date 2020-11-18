@@ -11,8 +11,14 @@ namespace JamventionWPF.ViewModels
 {
     public class ParticipantsViewModel : BasisViewModel
     {
-        public override string this[string columnName] => throw new NotImplementedException();
-     
+        public override string this[string columnName]
+        {
+            get
+            {
+                return "";
+            }
+        }
+
         public override bool CanExecute(object parameter)
         {
             return true;
