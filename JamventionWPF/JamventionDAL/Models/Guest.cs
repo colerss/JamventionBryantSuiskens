@@ -11,7 +11,7 @@ namespace JamventionDAL
     [Table("Guests", Schema ="JAM")]
     public class Guest
     {
-        [Key]
+        [Key, ForeignKey("WorkshopTeacher")]
         public int GuestID { get; set; }
         [Required]
         [MaxLength(30)]

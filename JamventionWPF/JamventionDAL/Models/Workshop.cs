@@ -15,7 +15,8 @@ namespace JamventionDAL
         public int WorkshopID { get; set; }
         [Required]
         public string Name { get; set; }
-        [ForeignKey("GuestID")]
+
+      
         public int? TeacherID { get; set; }
         [Required]
         public int TimeslotID { get; set; }
@@ -25,6 +26,7 @@ namespace JamventionDAL
 
         public ICollection<WorkshopModel> WorkshopModels { get; set; }
         public ICollection<WorkshopParticipant> WorkshopParticipants { get; set; }
+        [ForeignKey("TeacherID")]
         public Guest Teacher { get; set; }
         public Location Location { get; set; }
     }

@@ -13,7 +13,7 @@ namespace JamventionDAL
     {
         [Key]
         public int WorkshopModelID { get; set; }
-        [ForeignKey("GuestID")]
+        [ForeignKey("Model")]
         public int ModelID { get; set; }
         public int WorkshopID { get; set; }
 

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="DatabaseOperations.cs" />
     <Compile Include="JamventionEntities.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\GuestRole.cs" />

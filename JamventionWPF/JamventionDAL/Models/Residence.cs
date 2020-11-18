@@ -24,6 +24,7 @@ namespace JamventionDAL
 
 
         //navprops
+        [Required]
         public Guest Guest { get; set; }
         public Nationality Nationality { get; set; }
     }
