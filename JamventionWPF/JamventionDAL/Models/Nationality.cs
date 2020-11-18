@@ -14,7 +14,6 @@ namespace JamventionDAL
         [Key]
         public int NationalityID { get; set; }
         [Required]
-        [Index(IsUnique = true)]
         public string CountryName { get; set; }
 
         public ICollection<Residence> ResidencesInCountry { get; set; }

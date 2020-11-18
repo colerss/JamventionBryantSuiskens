@@ -59,6 +59,10 @@
   <ItemGroup>
     <Compile Include="DatabaseOperations.cs" />
     <Compile Include="JamventionEntities.cs" />
+    <Compile Include="Migrations\202011181325164_InitialCreate.cs" />
+    <Compile Include="Migrations\202011181325164_InitialCreate.designer.cs">
+      <DependentUpon>202011181325164_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -79,6 +83,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011181325164_InitialCreate.resx">
+      <DependentUpon>202011181325164_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
