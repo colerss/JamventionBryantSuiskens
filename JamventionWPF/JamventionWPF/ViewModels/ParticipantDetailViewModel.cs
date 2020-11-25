@@ -1,0 +1,85 @@
+﻿using JamventionDAL;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JamventionWPF.ViewModels
+{
+   public class ParticipantDetailViewModel:BasisViewModel
+    {
+        private Guest _guestDetails;
+        private Residence _residenceDetails;
+        private ObservableCollection<Room> _rooms;
+        public override void LoadComboboxes()
+        {
+            IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
+            IEnumerable<Room> otherRooms = unitOfWork.RepoOtherRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count);
+            List<Room> roomJoin = new List<Room>(localRooms);
+            roomJoin.AddRange(otherRooms);
+            IEnumerable<Room> rooms = roomJoin;
+            Rooms = new ObservableCollection<Room>(rooms);
+            base.LoadComboboxes();
+        }
+        public ParticipantDetailViewModel(Guest guest)
+        {
+            GuestDetails = guest;
+            ResidenceDetails = GuestDetails.Residence;
+        }
+        public override string this[string columnName]
+        {
+            get
+            {
+                return "";
+            }
+        }
+
+        public ObservableCollection<Room> Rooms
+        {
+            get
+            {
+                return _rooms;
+            }
+            set
+            {
+                _rooms = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Guest GuestDetails
+        {
+            get
+            {
+                return _guestDetails;
+            }
+            set
+            {
+                _guestDetails = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Residence ResidenceDetails
+        {
+            get
+            {
+                return _residenceDetails;
+            }
+            set
+            {
+                _residenceDetails = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public override void Execute(object parameter)
+        {
+            return;
+        }
+    }
+}

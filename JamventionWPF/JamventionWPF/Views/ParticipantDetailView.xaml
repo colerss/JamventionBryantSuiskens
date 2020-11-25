@@ -4,9 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ParticipantDetailView" Height="450" Width="800">
+        Title="ParticipantDetailView" Height="450" Width="600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="1" Margin="5" Header="Overige info" Grid.RowSpan="1" >
+            <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Rooms}" SelectedValue="{Binding GuestDetails.RoomID}" SelectedValuePath="RoomID" materialDesign:HintAssist.Hint="Kamer" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info">
+            
+        </GroupBox>
+        <GroupBox Grid.Column="0" Margin="5" Header="Algemene Info" Grid.RowSpan="2">
+            <ScrollViewer>
+            <StackPanel>
+                <TextBox materialDesign:HintAssist.Hint="Voornaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.FirstName, ValidatesOnDataErrors=True}" />
+                <TextBox materialDesign:HintAssist.Hint="Achternaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestDetails.LastName, ValidatesOnDataErrors=True}"  />
+                <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestDetails.EmailAddress, ValidatesOnDataErrors=True}" />
+                <TextBox materialDesign:HintAssist.Hint="Telefoon Nummer" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestDetails.TelephoneNr, ValidatesOnDataErrors=True}"  />
+                <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceDetails.City, ValidatesOnDataErrors=True}"  />
+                <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceDetails.PostalCode, ValidatesOnDataErrors=True}"  />
+                <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceDetails.Address, ValidatesOnDataErrors=True}"  />
+                <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" SelectedValue="{Binding ResidenceDetails.NationalityID}" SelectedValuePath="NationalityID" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestDetails.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8" IsChecked="{Binding GuestDetails.IsVegetarian}">Vegetariër
+                    </CheckBox>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
     </Grid>
 </Window>

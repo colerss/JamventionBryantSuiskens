@@ -15,13 +15,13 @@ namespace JamventionWPF.ViewModels
 {
     public class ParticipantsViewModel : BasisViewModel
     {
-        IUnitOfWork unitOfWork = new UnitOfWork(new JamventionDAL.JamventionEntities());
+       
         private Residence _residenceCreate;
         private Guest _guestCreate;
-        private ObservableCollection<Nationality> _nationalities;
-        private ObservableCollection<GuestRole> _guestRoles;
+        private Guest _selectedGuest;
+        
         private ObservableCollection<Guest> _guests;
-
+        
         #region Properties
 
         public Guest GuestCreate { get {
@@ -30,6 +30,18 @@ namespace JamventionWPF.ViewModels
                 _guestCreate = value;
                 NotifyPropertyChanged();
             } }
+        public Guest SelectedGuest
+        {
+            get
+            {
+                return _selectedGuest;
+            }
+            set
+            {
+                _selectedGuest = value;
+                NotifyPropertyChanged();
+            }
+        }
         public Residence ResidenceCreate
         {
             get
@@ -42,16 +54,7 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<Nationality> Nationalities { get
-            {
-                return _nationalities;
-            }
-            set
-            {
-                _nationalities = value;
-                NotifyPropertyChanged();
-            }
-        }
+       
 
         public ObservableCollection<Guest> Participants { get
             {
@@ -87,23 +90,11 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<GuestRole> GuestRoles
-        {
-            get
-            {
-                return _guestRoles;
-            }
-            set
-            {
-                _guestRoles = value;
-                NotifyPropertyChanged();
-            }
-        }
+        
         #endregion
 
         public ParticipantsViewModel()
         {
-            LoadComboboxes();
             LoadDatagrid();
             GuestCreate = new Guest {
             GuestID = (unitOfWork.RepoGuests.GetMaxPK(x => x.ResidenceID) + 1)
@@ -115,7 +106,7 @@ namespace JamventionWPF.ViewModels
         }
         public void LoadDatagrid()
         {
-            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence) ;
+            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality) ;
             Guests = new ObservableCollection<Guest>(guests);
         }
 
@@ -143,6 +134,9 @@ namespace JamventionWPF.ViewModels
                     break;
                 case "Lessons":
                     OpenLessons();
+                    break;
+                case "Details":
+                    OpenDetails();
                     break;
                 case "CreateGuest":
                     CreateGuest();
@@ -207,20 +201,20 @@ namespace JamventionWPF.ViewModels
             }
             
         }
-        public void LoadComboboxes()
-        {
-            IEnumerable<Nationality> nationalities = unitOfWork.RepoNationality.Retrieve();
-            IEnumerable<GuestRole> guestRoles = unitOfWork.RepoGuestRoles.Retrieve();
-            Nationalities = new ObservableCollection<Nationality>(nationalities);
-            GuestRoles = new ObservableCollection<GuestRole>(guestRoles);
-
-        }
+        
         public void OpenRooms()
         {
             RoomsViewModel vm = new RoomsViewModel();
             RoomsView view = new RoomsView();
             view.DataContext = vm;
-            view.Show();
+            view.ShowDialog();
+        }
+        public void OpenDetails()
+        {
+            ParticipantDetailViewModel vm = new ParticipantDetailViewModel(SelectedGuest);
+            ParticipantDetailView view = new ParticipantDetailView();
+            view.DataContext = vm;
+            view.ShowDialog();
         }
         public void OpenLessons()
         {

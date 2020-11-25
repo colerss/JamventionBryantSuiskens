@@ -24,8 +24,8 @@
         </Grid.RowDefinitions>
         
         <TabControl Grid.Column="0" Margin="5" Grid.ColumnSpan="4">
-            <TabItem Header="Iedereen">
-                <DataGrid Margin="5" Name="dgAll" ItemsSource="{Binding Guests}" AutoGenerateColumns="False" IsReadOnly="True">
+            <TabItem Header="Alle Gasten">
+                <DataGrid Margin="5" Name="dgAll" ItemsSource="{Binding Guests}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedGuest}" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
@@ -37,7 +37,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Deelnemers">
-                <DataGrid Margin="5" Name="dgDeelnemers" ItemsSource="{Binding Participants}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid Margin="5" Name="dgDeelnemers" ItemsSource="{Binding Participants}" SelectedValue="{Binding SelectedGuest}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
@@ -48,7 +48,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Modellen">
-                <DataGrid Margin="5" Name="dgModellen" ItemsSource="{Binding Models}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid Margin="5" Name="dgModellen" ItemsSource="{Binding Models}" SelectedValue="{Binding SelectedGuest}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
@@ -59,7 +59,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Docenten">
-                <DataGrid Margin="5" Name="dgDocent" ItemsSource="{Binding Teachers}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid Margin="5" Name="dgDocent" ItemsSource="{Binding Teachers}" SelectedValue="{Binding SelectedGuest}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
@@ -71,7 +71,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Personeel">
-                <DataGrid Margin="5" Name="dgPersoneel" ItemsSource="{Binding Other}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid Margin="5" Name="dgPersoneel" ItemsSource="{Binding Other}" SelectedValue="{Binding SelectedGuest}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
@@ -109,6 +109,7 @@
             </ScrollViewer>
         </GroupBox>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Margin="5" Content="Kamers" Command="{Binding}" CommandParameter="Rooms"  />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1"  Grid.Column="2" Margin="5" Content="Details" Command="{Binding}" CommandParameter="Details"  />
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Lessen"  Command="{Binding}" CommandParameter="Lessons" />
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="5" Margin="5" Content="Sluiten" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
         CommandParameter="{Binding ElementName=Participants}" />
