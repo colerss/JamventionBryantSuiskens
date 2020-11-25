@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
+        x:Name="ParticipantDetails"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ParticipantDetailView" Height="450" Width="600">
@@ -26,7 +27,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info">
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info" Visibility="{Binding IsParticipant}">
             
         </GroupBox>
         <GroupBox Grid.Column="0" Margin="5" Header="Algemene Info" Grid.RowSpan="2">
@@ -53,5 +54,8 @@
                 </StackPanel>
             </ScrollViewer>
         </GroupBox>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="2" Grid.Column="0" Margin="5" Content="Veranderingen Opslaan" Command="{Binding}" CommandParameter="SaveAll"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="2" Grid.Column="1" Margin="5" Content="Terug"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=ParticipantDetails}"  />
+
     </Grid>
 </Window>

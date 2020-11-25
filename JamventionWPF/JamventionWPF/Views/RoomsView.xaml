@@ -43,15 +43,22 @@
         </TabControl>
         <DataGrid Margin="5" Grid.Column="2" Grid.ColumnSpan="2"  Grid.Row="1" ItemsSource="{Binding SelectedRoom.RoomOccupancy}" IsReadOnly="True" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Achternaam" Binding="{Binding Path=Guest.LastName}"/>
-                <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=Guest.FirstName}"/>
+                <DataGridTextColumn Header="Achternaam" Binding="{Binding Path=LastName}"/>
+                <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Bedden vrij op Bonte Beeste Boel:</Label>
-            <ProgressBar Value="{Binding BeesteboelBedsLeft, Mode=OneWay}"  Height="10" Margin="5" Maximum="{Binding BeesteboelBedsMax, Mode=OneWay}" />
+            <Grid>
+            <ProgressBar Value="{Binding BeesteboelBedsLeft, Mode=OneWay}" Name="pbBonteBeds"  Height="10" Margin="5" Maximum="{Binding BeesteboelBedsMax, Mode=OneWay}" materialDesign:HintAssist.HelperText="{Binding BeesteboelBedsLeft, Mode=OneWay}" />
+                <TextBlock Text="{Binding ElementName=pbBonteBeds, Path=Value, StringFormat={}{0:0} Bedden Gevuld}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
             <Label FontSize="26">Andere Bedden</Label>
-            <ProgressBar Value="{Binding OtherBedsLeft, Mode=OneWay}"  Height="10" Margin="5" Maximum="{Binding OtherBedsMax, Mode=OneWay}" />
+            <Grid>
+            <ProgressBar Value="{Binding OtherBedsLeft, Mode=OneWay}"  Name="pbOtherBeds" Height="10" Margin="5" Maximum="{Binding OtherBedsMax, Mode=OneWay}" />
+                <TextBlock Text="{Binding ElementName=pbOtherBeds, Path=Value, StringFormat={}{0:0} Bedden Gevuld}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
         </StackPanel>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="2" Margin="5" Content="Nieuwe Kamer" Command="{Binding}" CommandParameter="NewRoom"/>
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="3" Margin="5" Content="Terug"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=Rooms}"  />

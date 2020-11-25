@@ -1,10 +1,12 @@
-﻿using JamventionDAL;
+﻿using GalaSoft.MvvmLight.Messaging;
+using JamventionDAL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace JamventionWPF.ViewModels
 {
@@ -22,11 +24,32 @@ namespace JamventionWPF.ViewModels
             IEnumerable<Room> rooms = roomJoin;
             Rooms = new ObservableCollection<Room>(rooms);
             base.LoadComboboxes();
+           
+           
+        }
+
+        public Visibility IsParticipant
+        {
+            get
+            {
+                if (GuestDetails.RoleID == 1)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
         }
         public ParticipantDetailViewModel(Guest guest)
         {
             GuestDetails = guest;
             ResidenceDetails = GuestDetails.Residence;
+            if (GuestDetails.RoleID != 1)
+            {
+                GuestRoles = new ObservableCollection<GuestRole>(GuestRoles.Where(x => x.RoleID != 1));
+            }
         }
         public override string this[string columnName]
         {
@@ -79,7 +102,26 @@ namespace JamventionWPF.ViewModels
 
         public override void Execute(object parameter)
         {
-            return;
+            switch (parameter.ToString())
+            {
+                case "SaveAll":
+                    if (SaveChanges() > 0)
+                    {
+
+                    }
+                    else
+                    {
+                        Messenger.Default.Send("Geen aanpassingen doorgegeven");
+                    }
+                   
+                    break;
+            }
+        }
+        public int SaveChanges()
+        {
+            unitOfWork.RepoGuests.AddOrEdit(GuestDetails);
+            unitOfWork.RepoResidence.AddOrEdit(ResidenceDetails);
+            return unitOfWork.Save();
         }
     }
 }

@@ -109,7 +109,7 @@
             </ScrollViewer>
         </GroupBox>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Margin="5" Content="Kamers" Command="{Binding}" CommandParameter="Rooms"  />
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1"  Grid.Column="2" Margin="5" Content="Details" Command="{Binding}" CommandParameter="Details"  />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1"  Grid.Column="2" Margin="5" Content="Details" Command="{Binding}" CommandParameter="Details" IsEnabled="{Binding DetailEnable}" />
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Lessen"  Command="{Binding}" CommandParameter="Lessons" />
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="5" Margin="5" Content="Sluiten" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
         CommandParameter="{Binding ElementName=Participants}" />

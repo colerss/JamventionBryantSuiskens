@@ -15,7 +15,7 @@ namespace JamventionWPF.ViewModels
 {
     public class ParticipantsViewModel : BasisViewModel
     {
-       
+        private bool _detailEnable;
         private Residence _residenceCreate;
         private Guest _guestCreate;
         private Guest _selectedGuest;
@@ -24,9 +24,17 @@ namespace JamventionWPF.ViewModels
         
         #region Properties
 
+        public bool DetailEnable
+        {
+            get { return _detailEnable; }
+            set { _detailEnable = true;
+                NotifyPropertyChanged();
+            }
+        }
         public Guest GuestCreate { get {
                 return _guestCreate;
             } set {
+
                 _guestCreate = value;
                 NotifyPropertyChanged();
             } }
@@ -39,6 +47,7 @@ namespace JamventionWPF.ViewModels
             set
             {
                 _selectedGuest = value;
+                DetailEnable = (_selectedGuest != null);
                 NotifyPropertyChanged();
             }
         }
