@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
+         Background="Gray"
         mc:Ignorable="d"
-        Title="ParticipantCreateInvoice" Height="450" Width="800">
+        x:Name="Invoice"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Invoice Creation" Height="250" Width="400">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.ColumnSpan="2" Margin="5" Background="White" Header="Invoice Info" FontSize="8">
+            <StackPanel>
+                <ComboBox Margin="0 8 0 0" ItemsSource="{Binding TicketTypes}"  SelectedValue="{Binding InvoiceCreate.TicketTypeID}" SelectedValuePath="TicketTypeID" DisplayMemberPath="TicketName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                </ComboBox>
+            </StackPanel>
+        </GroupBox>
+
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer Toevoegen" Command="{Binding}" CommandParameter="NewRoom"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Annuleren"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=Rooms}"  />
+
     </Grid>
 </Window>

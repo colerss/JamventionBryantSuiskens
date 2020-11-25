@@ -15,7 +15,7 @@ namespace JamventionDAL
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TicketTypeID { get; set; }
         [Required]
-        public string TicketNaam { get; set; }
+        public string TicketName { get; set; }
         [Column(TypeName = "money")]
         public decimal TicketPrice { get; set; }
         public bool OnFriday { get; set; }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
         x:Name="ParticipantDetails"
+          Background="Gray"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ParticipantDetailView" Height="450" Width="600">
@@ -14,11 +15,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.8*"/>
+            <RowDefinition Height="3.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Column="1" Margin="5" Header="Overige info" Grid.RowSpan="1" >
+        <GroupBox Grid.Column="1" Margin="5" Header="Overige info" Grid.RowSpan="1" Background="White" >
+            <StackPanel>
             <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Rooms}" SelectedValue="{Binding GuestDetails.RoomID}" SelectedValuePath="RoomID" materialDesign:HintAssist.Hint="Kamer" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -26,11 +28,28 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
+            <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestDetails.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            </StackPanel>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info" Visibility="{Binding IsParticipant}">
-            
+        <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info" Visibility="{Binding IsParticipant}"  Background="White" >
+            <ScrollViewer>
+            <StackPanel>
+                <TextBox materialDesign:HintAssist.Hint="Invoice" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.InvoiceNr, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
+                <TextBox materialDesign:HintAssist.Hint="Ticketsoort" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.TicketType.TicketName, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
+                    <TextBox materialDesign:HintAssist.Hint="Resterende kosten" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.RemainingCosts, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="2" Grid.Column="0" Margin="5" Content="Betaling Toevoegen" Command="{Binding}" CommandParameter="AddPayment"/>
+                    <DataGrid Height="75" ItemsSource="{Binding GuestDetails.Invoice.Payments}" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Betalingssom" Binding="{Binding Path=Payment.Amount}"/>
+                            <DataGridTextColumn Header="Datum" Binding="{Binding Path=Payment.PaymentDate}"/>
+                        </DataGrid.Columns>
+                </DataGrid>
+                
+                </StackPanel>
+            </ScrollViewer>
         </GroupBox>
-        <GroupBox Grid.Column="0" Margin="5" Header="Algemene Info" Grid.RowSpan="2">
+        <GroupBox Grid.Column="0" Margin="5" Header="Algemene Info" Grid.RowSpan="2"  Background="White" >
             <ScrollViewer>
             <StackPanel>
                 <TextBox materialDesign:HintAssist.Hint="Voornaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.FirstName, ValidatesOnDataErrors=True}" />
@@ -47,8 +66,7 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestDetails.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    </ComboBox>
+                 
                     <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8" IsChecked="{Binding GuestDetails.IsVegetarian}">Vegetariër
                     </CheckBox>
                 </StackPanel>

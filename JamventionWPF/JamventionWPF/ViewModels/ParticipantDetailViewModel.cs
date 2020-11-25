@@ -107,7 +107,7 @@ namespace JamventionWPF.ViewModels
                 case "SaveAll":
                     if (SaveChanges() > 0)
                     {
-
+                        Messenger.Default.Send("Aanpassingen Opgeslagen");
                     }
                     else
                     {

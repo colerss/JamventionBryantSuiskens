@@ -115,7 +115,7 @@ namespace JamventionWPF.ViewModels
         }
         public void LoadDatagrid()
         {
-            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality) ;
+            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality, x => x.Invoice, x => x.Invoice.TicketType) ;
             Guests = new ObservableCollection<Guest>(guests);
         }
 
