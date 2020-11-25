@@ -1,7 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using JamventionDAL;
+using JamventionDAL.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -15,6 +18,44 @@ namespace JamventionWPF.ViewModels
 {
     public abstract class BasisViewModel : INotifyPropertyChanged, ICommand, IDataErrorInfo
     {
+        protected IUnitOfWork unitOfWork = new UnitOfWork(new JamventionDAL.JamventionEntities());
+        //Breedgebruikte comboboxes
+        private ObservableCollection<Nationality> _nationalities;
+        private ObservableCollection<GuestRole> _guestRoles;
+        #region Startup routine
+        public virtual void LoadComboboxes()
+        {
+            IEnumerable<Nationality> nationalities = unitOfWork.RepoNationality.Retrieve();
+            IEnumerable<GuestRole> guestRoles = unitOfWork.RepoGuestRoles.Retrieve();
+            Nationalities = new ObservableCollection<Nationality>(nationalities);
+            GuestRoles = new ObservableCollection<GuestRole>(guestRoles);
+
+        }
+        public ObservableCollection<Nationality> Nationalities
+        {
+            get
+            {
+                return _nationalities;
+            }
+            set
+            {
+                _nationalities = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<GuestRole> GuestRoles
+        {
+            get
+            {
+                return _guestRoles;
+            }
+            set
+            {
+                _guestRoles = value;
+                NotifyPropertyChanged();
+            }
+        }
+        #endregion
         public static void ErrorLogging(Exception ex)
         {
             string strPath = @"Log.txt";
@@ -43,6 +84,7 @@ namespace JamventionWPF.ViewModels
         public abstract string this[string columnName] { get; }
         public BasisViewModel()
         {
+            LoadComboboxes();
             this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
         }
 

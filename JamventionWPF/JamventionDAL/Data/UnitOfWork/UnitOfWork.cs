@@ -9,7 +9,9 @@ namespace JamventionDAL.Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-
+        private IRepository<LocalRoom> _repoLocalRooms;
+        private IRepository<OtherRoom> _repoOtherRooms;
+        private IRepository<Room> _repoAllRooms;
         private IRepository<Guest> _repoGuests;
         private IRepository<Nationality> _repoNationality;
         private IRepository<GuestRole> _repoGuestRoles;
@@ -66,6 +68,42 @@ namespace JamventionDAL.Data.UnitOfWork
                 return _repoResidences;
             }
         }
+
+        public IRepository<LocalRoom> RepoLocalRooms
+        {
+            get
+            {
+                if (_repoLocalRooms == null)
+                {
+                    _repoLocalRooms = new Repository<LocalRoom>(this.JamventionEntities);
+                }
+                return _repoLocalRooms;
+            }
+        }
+        public IRepository<Room> RepoAllRooms
+        {
+            get
+            {
+                if (_repoAllRooms == null)
+                {
+                    _repoAllRooms = new Repository<Room>(this.JamventionEntities);
+                }
+                return _repoAllRooms;
+            }
+        }
+        public IRepository<OtherRoom> RepoOtherRooms
+        {
+            get
+            {
+                if (_repoOtherRooms == null)
+                {
+                    _repoOtherRooms = new Repository<OtherRoom>(this.JamventionEntities);
+                }
+                return _repoOtherRooms;
+            }
+        }
+
+       
 
         public void Dispose()
         {

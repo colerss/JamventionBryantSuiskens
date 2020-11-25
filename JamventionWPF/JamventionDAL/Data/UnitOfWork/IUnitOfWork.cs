@@ -13,7 +13,9 @@ namespace JamventionDAL.Data.UnitOfWork
         IRepository<Nationality> RepoNationality { get; }
         IRepository<GuestRole> RepoGuestRoles { get; }
         IRepository<Residence> RepoResidence { get; }
-
+        IRepository<Room> RepoAllRooms { get; }
+        IRepository<LocalRoom> RepoLocalRooms { get; }
+        IRepository<OtherRoom> RepoOtherRooms { get;  }
         int Save();
     }
 }

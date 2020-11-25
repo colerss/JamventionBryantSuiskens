@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="Data\JamventionEntities.cs" />
     <Compile Include="Data\Partials\JamventionEntities.cs" />
-    <Compile Include="Data\Partials\LocalRoom.cs" />
+    <Compile Include="Data\Partials\Room.cs" />
     <Compile Include="Data\Repository\IRepository.cs" />
     <Compile Include="Data\Repository\Repository.cs" />
     <Compile Include="Data\UnitOfWork\IUnitOfWork.cs" />
@@ -95,6 +95,14 @@
     <Compile Include="Migrations\202011241811316_fixIdentity5.cs" />
     <Compile Include="Migrations\202011241811316_fixIdentity5.designer.cs">
       <DependentUpon>202011241811316_fixIdentity5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011251132598_RoomsAbstract.cs" />
+    <Compile Include="Migrations\202011251132598_RoomsAbstract.designer.cs">
+      <DependentUpon>202011251132598_RoomsAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011251404024_RoomsAbstractUndo.cs" />
+    <Compile Include="Migrations\202011251404024_RoomsAbstractUndo.designer.cs">
+      <DependentUpon>202011251404024_RoomsAbstractUndo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
@@ -142,6 +150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011241811316_fixIdentity5.resx">
       <DependentUpon>202011241811316_fixIdentity5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251132598_RoomsAbstract.resx">
+      <DependentUpon>202011251132598_RoomsAbstract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251404024_RoomsAbstractUndo.resx">
+      <DependentUpon>202011251404024_RoomsAbstractUndo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

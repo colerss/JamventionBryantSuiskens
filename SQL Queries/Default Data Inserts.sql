@@ -34,7 +34,80 @@ VALUES
 ('Sheep'),
 ('Duck'),
 ('Piglet'),
+('Pig'),
 ('Rooster');
+
+Insert INTO Jam.Rooms
+(Beds)
+VALUES
+(4),
+(4),
+(4),
+(4),
+(5),
+(5),
+(5),
+(5),
+(4),
+(4),
+(6),
+(4),
+(4),
+(4),
+(5),
+(5),
+(5),
+(5),
+(5),
+(5),
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(4),
+(2),
+(3);
+Insert INTO Jam.LocalRooms
+(RoomID, RoomTypeID, RoomCode, RoomColor)
+VALUES
+(1, 1, '1-1', 'Pink'),
+(2, 1, '1-2', 'Yellow'),
+(3, 1, '1-3', 'Purple'),
+(4, 1, '1-4', 'Blue'),
+(5, 2, '2-1', 'Blue'),
+(6, 2, '2-2', 'Yellow'),
+(7, 2, '2-3', 'Pink'),
+(8, 2, '2-4', 'Purple'),
+(9, 3, '3-1', 'Purple'),
+(10, 3, '3-2', 'Yellow'),
+(11, 3, '3-3', 'Pink'),
+(12, 3, '3-4', 'Blue'),
+(13, 4, '4-1', 'Blue'),
+(14, 4, '4-2', 'Purple'),
+(15, 4, '4-3', 'Yellow'),
+(16, 4, '4-4', 'Pink'),
+(17, 7, '5-1', 'Pink'),
+(18, 7, '5-2', 'Yellow'),
+(19, 7, '5-3', 'Purple'),
+(20, 7, '5-4', 'Blue'),
+(21, 8, '0', 'Purple'),
+(22, 8, '1', 'Blue'),
+(23, 8, '1', 'Yellow'),
+(24, 8, '2', 'Blue'),
+(25, 8, '2', 'Yellow'),
+(26, 9, '', '')
+;
+INSERT INTO Jam.OtherRooms
+(RoomID, RoomDescription)
+VALUES
+(27, 'Suiskens; Kamer Ouders'),
+(28, 'Suiskens; Studio'),
+(29, 'Suiskens; Kantoor Willy'),
+(30, 'Suiskens; Kamer Bryant');
+
 
 INSERT INTO Jam.Nationalities
  

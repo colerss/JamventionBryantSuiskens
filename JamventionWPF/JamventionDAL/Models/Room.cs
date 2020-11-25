@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 namespace JamventionDAL
 {
     [Table("Rooms", Schema = "JAM")]
-    public class Room
+    public partial class Room
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomID { get; set; }
         public int Beds { get; set; }
-
         public ICollection<Guest> RoomOccupancy { get; set; }
 
     }
@@ -36,7 +35,7 @@ namespace JamventionDAL
     }
 
     [Table("OtherRooms", Schema = "JAM")]
-    public class OtherRoom : Room
+    public partial class OtherRoom : Room
     {
         public string RoomDescription { get; set; }
     }
