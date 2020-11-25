@@ -16,6 +16,8 @@ namespace JamventionDAL.Data.UnitOfWork
         IRepository<Room> RepoAllRooms { get; }
         IRepository<LocalRoom> RepoLocalRooms { get; }
         IRepository<OtherRoom> RepoOtherRooms { get;  }
+        IRepository<Invoice> RepoInvoice { get; }
+        IRepository<TicketType> RepoTicketType { get; }
         int Save();
     }
 }

@@ -16,6 +16,8 @@ namespace JamventionDAL.Data.UnitOfWork
         private IRepository<Nationality> _repoNationality;
         private IRepository<GuestRole> _repoGuestRoles;
         private IRepository<Residence> _repoResidences;
+        private IRepository<Invoice> _repoInvoice;
+        private IRepository<TicketType> _repoTicketType;
         public UnitOfWork(JamventionEntities jamventionEntities)
         {
             this.JamventionEntities = jamventionEntities;
@@ -68,7 +70,17 @@ namespace JamventionDAL.Data.UnitOfWork
                 return _repoResidences;
             }
         }
-
+        public IRepository<TicketType> RepoTicketType
+        {
+            get
+            {
+                if (_repoTicketType == null)
+                {
+                    _repoTicketType = new Repository<TicketType>(this.JamventionEntities);
+                }
+                return _repoTicketType;
+            }
+        }
         public IRepository<LocalRoom> RepoLocalRooms
         {
             get
@@ -103,7 +115,17 @@ namespace JamventionDAL.Data.UnitOfWork
             }
         }
 
-       
+       public IRepository<Invoice> RepoInvoice
+        {
+            get
+            {
+                if (_repoInvoice == null)
+                {
+                    _repoInvoice = new Repository<Invoice>(this.JamventionEntities);
+                }
+                return _repoInvoice;
+            }
+        }
 
         public void Dispose()
         {

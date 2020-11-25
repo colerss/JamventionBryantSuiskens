@@ -93,14 +93,14 @@
                     <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.City, ValidatesOnDataErrors=True}"  />
                     <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.PostalCode, ValidatesOnDataErrors=True}"  />
                     <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.Address, ValidatesOnDataErrors=True}"  />
-                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" SelectedValue="{Binding ResidenceCreate.NationalityID}" SelectedValuePath="NationalityID" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" SelectedValue="{Binding ResidenceCreate.NationalityID}" SelectedValuePath="NationalityID" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                         <ComboBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel />
                             </ItemsPanelTemplate>
                         </ComboBox.ItemsPanel>
                     </ComboBox>
-                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestCreate.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestCreate.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
                     <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8" IsChecked="{Binding GuestCreate.IsVegetarian}">Vegetariër
                         </CheckBox>

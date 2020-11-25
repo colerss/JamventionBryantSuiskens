@@ -104,6 +104,10 @@
     <Compile Include="Migrations\202011251404024_RoomsAbstractUndo.designer.cs">
       <DependentUpon>202011251404024_RoomsAbstractUndo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011251808522_FixNameForConsistency.cs" />
+    <Compile Include="Migrations\202011251808522_FixNameForConsistency.designer.cs">
+      <DependentUpon>202011251808522_FixNameForConsistency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251404024_RoomsAbstractUndo.resx">
       <DependentUpon>202011251404024_RoomsAbstractUndo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251808522_FixNameForConsistency.resx">
+      <DependentUpon>202011251808522_FixNameForConsistency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
