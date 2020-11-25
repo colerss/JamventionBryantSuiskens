@@ -11,7 +11,8 @@ namespace JamventionDAL
     [Table("Guests", Schema ="JAM")]
     public class Guest
     {
-        [Key, ForeignKey("WorkshopTeacher")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GuestID { get; set; }
         [Required]
         [MaxLength(30)]
@@ -31,9 +32,9 @@ namespace JamventionDAL
       
         [Required]
         public int RoleID { get; set; }
-        [Required]
-        public int InvoiceId { get; set; }
-        public int RoomID { get; set; }
+    
+        public int? InvoiceId { get; set; }
+        public int? RoomID { get; set; }
 
         //navprops
 
@@ -43,7 +44,7 @@ namespace JamventionDAL
         public Room Room { get; set; }
         public ICollection<WorkshopModel> WorkshopModels { get; set; }
         public ICollection<WorkshopParticipant> WorkshopParticipants { get; set; }
-        public Workshop WorkshopTeacher { get; set; }
+        public ICollection<WorkshopTeacher> WorkshopTeacher { get; set; }
 
 
     }

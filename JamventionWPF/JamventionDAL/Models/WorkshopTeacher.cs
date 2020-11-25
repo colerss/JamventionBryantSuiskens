@@ -8,19 +8,20 @@ using System.Threading.Tasks;
 
 namespace JamventionDAL
 {
-    [Table("WorkshopParticipants", Schema = "JAM")]
-    public class WorkshopParticipant
+    [Table("WorkshopTeacher", Schema = "JAM")]
+    public class WorkshopTeacher
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkshopParticipantID { get; set; }
-        public int GuestID { get; set; }
+
+        [ForeignKey("Teacher")]
+        public int TeacherID { get; set; }
         public int WorkshopID { get; set; }
 
         //navprops
 
-        public Guest Guest { get; set; }
+        public Guest Teacher { get; set; }
         public Workshop Workshop { get; set; }
     }
 }

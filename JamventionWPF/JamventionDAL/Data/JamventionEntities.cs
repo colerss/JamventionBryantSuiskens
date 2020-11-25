@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JamventionDAL
 {
-    class JamventionEntities : DbContext
+    public partial class JamventionEntities : DbContext
     {
         public JamventionEntities(): base("name=JamventionDB")
         {

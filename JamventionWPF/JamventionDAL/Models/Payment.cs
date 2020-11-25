@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Payment
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentID { get; set; }
         [Required]
         [DataType(DataType.Date)]

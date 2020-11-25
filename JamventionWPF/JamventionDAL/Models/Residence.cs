@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Residence
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ResidenceID { get; set; }
         [MaxLength(10)]
         public string PostalCode { get; set; }
@@ -24,8 +25,7 @@ namespace JamventionDAL
 
 
         //navprops
-        [Required]
-        public Guest Guest { get; set; }
+        public ICollection<Guest> Guest { get; set; }
         public Nationality Nationality { get; set; }
     }
 }

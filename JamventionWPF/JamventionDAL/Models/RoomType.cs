@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class RoomType
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomTypeID { get; set; }
         [Required]
         [MaxLength(30)]

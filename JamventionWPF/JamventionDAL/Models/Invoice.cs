@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Invoice
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvoiceID { get; set; }
         [Required]
         public int DebitorNr { get; set; }

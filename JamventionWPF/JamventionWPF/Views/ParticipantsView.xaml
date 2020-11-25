@@ -24,23 +24,61 @@
         </Grid.RowDefinitions>
         
         <TabControl Grid.Column="0" Margin="5" Grid.ColumnSpan="4">
-            <TabItem Header="Deelnemers">
-                <DataGrid Margin="5" >
+            <TabItem Header="Iedereen">
+                <DataGrid Margin="5" Name="dgAll" ItemsSource="{Binding Guests}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridTextColumn Header="Role" Binding="{Binding Path=GuestRole.RoleName}"/>
+                        <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
+                    </DataGrid.Columns>
 
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Deelnemers">
+                <DataGrid Margin="5" Name="dgDeelnemers" ItemsSource="{Binding Participants}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Modellen">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5" Name="dgModellen" ItemsSource="{Binding Models}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Docenten">
-                <DataGrid Margin="5" >
+                <DataGrid Margin="5" Name="dgDocent" ItemsSource="{Binding Teachers}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
+                    </DataGrid.Columns>
 
                 </DataGrid>
             </TabItem>
             <TabItem Header="Personeel">
-                <DataGrid Margin="5" >
+                <DataGrid Margin="5" Name="dgPersoneel" ItemsSource="{Binding Other}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
+                    </DataGrid.Columns>
 
                 </DataGrid>
             </TabItem>
@@ -48,20 +86,25 @@
         <GroupBox Grid.Column="4" Grid.ColumnSpan="2" Margin="5" Background="White" Header="Nieuwe gast toevoegen">
             <ScrollViewer>
             <StackPanel>
-                <TextBox materialDesign:HintAssist.Hint="Voornaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox materialDesign:HintAssist.Hint="Achternaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox materialDesign:HintAssist.Hint="Telefoon Nummer" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <TextBox materialDesign:HintAssist.Hint="Voornaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestCreate.FirstName, ValidatesOnDataErrors=True}" />
+                    <TextBox materialDesign:HintAssist.Hint="Achternaam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestCreate.LastName, ValidatesOnDataErrors=True}"  />
+                    <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestCreate.EmailAddress, ValidatesOnDataErrors=True}" />
+                    <TextBox materialDesign:HintAssist.Hint="Telefoon Nummer" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding GuestCreate.TelephoneNr, ValidatesOnDataErrors=True}"  />
+                    <TextBox materialDesign:HintAssist.Hint="Stad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.City, ValidatesOnDataErrors=True}"  />
+                    <TextBox materialDesign:HintAssist.Hint="Postcode" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.PostalCode, ValidatesOnDataErrors=True}"  />
+                    <TextBox materialDesign:HintAssist.Hint="Adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding ResidenceCreate.Address, ValidatesOnDataErrors=True}"  />
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding Nationalities}" SelectedValue="{Binding ResidenceCreate.NationalityID}" SelectedValuePath="NationalityID" DisplayMemberPath="CountryName" materialDesign:HintAssist.Hint="Land" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
                     </ComboBox>
-                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Margin="0 8 0 0" ItemsSource="{Binding GuestRoles}"  SelectedValue="{Binding GuestCreate.RoleID}" SelectedValuePath="RoleID" DisplayMemberPath="RoleName" materialDesign:HintAssist.Hint="Rol" materialDesign:HintAssist.FloatingScale="1.5" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8">Vegetariër
+                    <CheckBox   x:Name="MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox" Margin="0,8,0,8" IsChecked="{Binding GuestCreate.IsVegetarian}">Vegetariër
                         </CheckBox>
-                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="5" Content="Toevoegen" />
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="5" Content="Toevoegen" Command="{Binding}" CommandParameter="CreateGuest" />
                 </StackPanel>
             </ScrollViewer>
         </GroupBox>

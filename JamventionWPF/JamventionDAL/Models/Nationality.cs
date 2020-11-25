@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Nationality
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NationalityID { get; set; }
         [Required]
         public string CountryName { get; set; }

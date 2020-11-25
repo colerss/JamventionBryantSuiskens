@@ -57,11 +57,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseOperations.cs" />
-    <Compile Include="JamventionEntities.cs" />
+    <Compile Include="Data\JamventionEntities.cs" />
+    <Compile Include="Data\Partials\JamventionEntities.cs" />
+    <Compile Include="Data\Partials\LocalRoom.cs" />
+    <Compile Include="Data\Repository\IRepository.cs" />
+    <Compile Include="Data\Repository\Repository.cs" />
+    <Compile Include="Data\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Data\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Migrations\202011181325164_InitialCreate.cs" />
     <Compile Include="Migrations\202011181325164_InitialCreate.designer.cs">
       <DependentUpon>202011181325164_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241534104_NewMigration.cs" />
+    <Compile Include="Migrations\202011241534104_NewMigration.designer.cs">
+      <DependentUpon>202011241534104_NewMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241753529_RemoveAutonumber.cs" />
+    <Compile Include="Migrations\202011241753529_RemoveAutonumber.designer.cs">
+      <DependentUpon>202011241753529_RemoveAutonumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241758416_fixIdentity1.cs" />
+    <Compile Include="Migrations\202011241758416_fixIdentity1.designer.cs">
+      <DependentUpon>202011241758416_fixIdentity1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241801015_fixIdentity2.cs" />
+    <Compile Include="Migrations\202011241801015_fixIdentity2.designer.cs">
+      <DependentUpon>202011241801015_fixIdentity2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241805400_fixIdentity3.cs" />
+    <Compile Include="Migrations\202011241805400_fixIdentity3.designer.cs">
+      <DependentUpon>202011241805400_fixIdentity3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241810371_fixIdentity4.cs" />
+    <Compile Include="Migrations\202011241810371_fixIdentity4.designer.cs">
+      <DependentUpon>202011241810371_fixIdentity4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241811316_fixIdentity5.cs" />
+    <Compile Include="Migrations\202011241811316_fixIdentity5.designer.cs">
+      <DependentUpon>202011241811316_fixIdentity5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
@@ -70,6 +103,7 @@
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\Nationality.cs" />
     <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\WorkshopTeacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Residence.cs" />
     <Compile Include="Models\TicketType.cs" />
@@ -88,7 +122,29 @@
     <EmbeddedResource Include="Migrations\202011181325164_InitialCreate.resx">
       <DependentUpon>202011181325164_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241534104_NewMigration.resx">
+      <DependentUpon>202011241534104_NewMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241753529_RemoveAutonumber.resx">
+      <DependentUpon>202011241753529_RemoveAutonumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241758416_fixIdentity1.resx">
+      <DependentUpon>202011241758416_fixIdentity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241801015_fixIdentity2.resx">
+      <DependentUpon>202011241801015_fixIdentity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241805400_fixIdentity3.resx">
+      <DependentUpon>202011241805400_fixIdentity3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241810371_fixIdentity4.resx">
+      <DependentUpon>202011241810371_fixIdentity4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241811316_fixIdentity5.resx">
+      <DependentUpon>202011241811316_fixIdentity5.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

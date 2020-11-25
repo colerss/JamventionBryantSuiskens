@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class TicketType
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TicketTypeID { get; set; }
         [Required]
         public string TicketNaam { get; set; }

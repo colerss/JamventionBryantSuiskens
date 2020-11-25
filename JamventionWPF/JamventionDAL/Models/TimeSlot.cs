@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class TimeSlot
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TimeSlotID { get; set; }
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }

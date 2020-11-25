@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Location
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationID { get; set; }
         public string LocationName { get; set; }
 

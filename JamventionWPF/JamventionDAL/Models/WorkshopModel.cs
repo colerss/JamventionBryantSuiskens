@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class WorkshopModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkshopModelID { get; set; }
         [ForeignKey("Model")]
         public int ModelID { get; set; }

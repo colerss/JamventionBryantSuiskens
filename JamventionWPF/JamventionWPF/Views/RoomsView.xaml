@@ -23,18 +23,27 @@
 
         <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="3">
             <TabItem Header="Kamers Bonte Beestenboel">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5" ItemsSource="{Binding LocalRooms}" IsReadOnly="True" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kamernaam" Binding="{Binding Path=RoomName}"/>
+                        <DataGridTextColumn Header="Bedden" Binding="{Binding Path=Beds}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Kamers buiten de vesting">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5" ItemsSource="{Binding OtherRooms}" IsReadOnly="True" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Kamerbeschrijving" Binding="{Binding Path=RoomDescription}"/>
+                        <DataGridTextColumn Header="Bedden" Binding="{Binding Path=Beds}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="1">
-
+        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="1" ItemsSource="{Binding RoomGuests}" IsReadOnly="True" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Achternaam" Binding="{Binding Path=Guest.LastName}"/>
+                <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=Guest.FirstName}"/>
+            </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Bedden vrij op Bonte Beeste Boel:</Label>
@@ -42,8 +51,8 @@
             <Label FontSize="26">Andere Bedden</Label>
             <ProgressBar Value="{Binding AndereBeddenOver}"  Height="10" Margin="5" Maximum="{Binding AndereBeddenMax}" />
         </StackPanel>
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Nieuwe Kamer" />
-        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="2" Margin="5" Content="Terug" />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Nieuwe Kamer" Command="{Binding}" CommandParameter="NewRoom"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="2" Margin="5" Content="Terug"  Command="{Binding CloseWindowCommand, Mode=OneWay}" />
     </Grid>
 
 </Window>

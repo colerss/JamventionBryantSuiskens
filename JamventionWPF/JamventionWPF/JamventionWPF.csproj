@@ -87,7 +87,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\LessonsViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantInvoiceViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
+    <Compile Include="Views\ParticipantCreateInvoice.xaml.cs">
+      <DependentUpon>ParticipantCreateInvoice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ParticipantDetailView.xaml.cs">
       <DependentUpon>ParticipantDetailView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +104,10 @@
     <Compile Include="Views\RoomsView.xaml.cs">
       <DependentUpon>RoomsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ParticipantCreateInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ParticipantDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

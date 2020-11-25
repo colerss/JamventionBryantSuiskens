@@ -12,6 +12,7 @@ namespace JamventionDAL
     public class Room
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomID { get; set; }
         public int Beds { get; set; }
 
@@ -19,7 +20,7 @@ namespace JamventionDAL
 
     }
     [Table("LocalRooms", Schema = "JAM")]
-    public class LocalRoom : Room
+    public partial class LocalRoom : Room
     {
         public int RoomTypeID { get; set; }
         [Required]

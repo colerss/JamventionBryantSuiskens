@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JamventionDAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace JamventionWPF.ViewModels
 {
-    public class RoomsViewModel : BasisViewModel
+    class ParticipantInvoiceViewModel : BasisViewModel
     {
-        public override string this[string columnName]
+        private Guest _guest;
+        private Residence _residence;
+        public ParticipantInvoiceViewModel(Guest guest, Residence residence)
         {
+            _guest = guest;
+            _residence = residence;
+        }
+        public override string this[string columnName] {
             get
             {
                 return "";
@@ -23,11 +30,7 @@ namespace JamventionWPF.ViewModels
 
         public override void Execute(object parameter)
         {
-            switch (parameter.ToString())
-            {
-                case "NewRoom":
-                    break;
-            }
+            return;
         }
     }
 }
