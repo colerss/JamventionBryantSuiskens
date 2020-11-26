@@ -12,7 +12,7 @@ namespace JamventionDAL
     public class Guest
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GuestID { get; set; }
         [Required]
         [MaxLength(30)]
@@ -33,7 +33,7 @@ namespace JamventionDAL
         [Required]
         public int RoleID { get; set; }
     
-        public int? InvoiceId { get; set; }
+        public int? InvoiceID { get; set; }
         public int? RoomID { get; set; }
 
         //navprops

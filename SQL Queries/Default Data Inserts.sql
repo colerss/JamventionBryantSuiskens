@@ -12,7 +12,7 @@ VALUES
 ('Special'),
 ('Organizer');
 
-INSERT INTO Jam.Locations
+INSERT INTO JAM.Locations
  
 (LocationName)
  
@@ -23,6 +23,7 @@ VALUES
 ('Swallows Nest'),
 ('Piggery'),
 ('The Stable');
+
 
 INSERT INTO Jam.RoomTypes
  
@@ -35,7 +36,8 @@ VALUES
 ('Duck'),
 ('Piglet'),
 ('Pig'),
-('Rooster');
+('Rooster'),
+('At Piggery');
 
 Insert INTO Jam.Rooms
 (Beds)
@@ -89,16 +91,16 @@ VALUES
 (14, 4, '4-2', 'Purple'),
 (15, 4, '4-3', 'Yellow'),
 (16, 4, '4-4', 'Pink'),
-(17, 7, '5-1', 'Pink'),
-(18, 7, '5-2', 'Yellow'),
-(19, 7, '5-3', 'Purple'),
-(20, 7, '5-4', 'Blue'),
-(21, 8, '0', 'Purple'),
-(22, 8, '1', 'Blue'),
-(23, 8, '1', 'Yellow'),
-(24, 8, '2', 'Blue'),
-(25, 8, '2', 'Yellow'),
-(26, 9, '', '')
+(17, 5, '5-1', 'Pink'),
+(18, 5, '5-2', 'Yellow'),
+(19, 5, '5-3', 'Purple'),
+(20, 5, '5-4', 'Blue'),
+(21, 6, '0', 'Purple'),
+(22, 6, '1', 'Blue'),
+(23, 6, '1', 'Yellow'),
+(24, 6, '2', 'Blue'),
+(25, 6, '2', 'Yellow'),
+(26, 7, '', '')
 ;
 INSERT INTO Jam.OtherRooms
 (RoomID, RoomDescription)
@@ -108,6 +110,17 @@ VALUES
 (29, 'Suiskens; Kantoor Willy'),
 (30, 'Suiskens; Kamer Bryant');
 
+Insert INTO JAM.TicketTypes
+(TicketName, TicketPrice, OnFriday, OnSaturday, OnSunday)
+VALUES
+('JAM Ticket', 280, 1, 1, 1),
+('JAM 4-Beds Ticket', 265, 1, 1, 1),
+('Early Bird JAM Ticket', 255, 1, 1, 1),
+('Gift Jam Ticket', 0, 1, 1, 1),
+('8-Hour Ticket', 165, 0, 1, 0),
+('8-Hour Gift Ticket', 0, 0, 1, 0),
+('6-Hour Ticket', 125, 0, 0, 1),
+('6-Hour Gift Ticket', 0,  0, 0, 1);
 
 INSERT INTO Jam.Nationalities
  
@@ -316,4 +329,3 @@ VALUES
 ('Yemen'),
 ('Zambia'),
 ('Zimbabwe');
-

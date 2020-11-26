@@ -12,7 +12,7 @@ namespace JamventionDAL
     public class Invoice
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InvoiceID { get; set; }
         [Required]
         public int DebitorNr { get; set; }
@@ -21,6 +21,8 @@ namespace JamventionDAL
         public int TicketTypeID { get; set; }
 
         public ICollection<Payment> Payments { get; set; }
+        //Toevoeging op vraag van klant; één invoice kan onder zeldzame omstandigheden door meerdere Deelnemers gedeeld worden
+        public ICollection<Guest> Guests { get; set; }
         public TicketType TicketType { get; set; }
 
 

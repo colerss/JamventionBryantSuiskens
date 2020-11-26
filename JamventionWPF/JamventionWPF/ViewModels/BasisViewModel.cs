@@ -23,6 +23,12 @@ namespace JamventionWPF.ViewModels
         private ObservableCollection<Nationality> _nationalities;
         private ObservableCollection<GuestRole> _guestRoles;
         #region Startup routine
+        public BasisViewModel()
+        {
+           
+            LoadComboboxes();
+            this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
+        }
         public virtual void LoadComboboxes()
         {
             IEnumerable<Nationality> nationalities = unitOfWork.RepoNationality.Retrieve();
@@ -76,17 +82,14 @@ namespace JamventionWPF.ViewModels
             }
         }
 
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public abstract string this[string columnName] { get; }
-        public BasisViewModel()
-        {
-            LoadComboboxes();
-            this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
-        }
+       
 
         public RelayCommand<Window> CloseWindowCommand { get; private set; }
 

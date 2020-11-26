@@ -13,7 +13,7 @@ namespace JamventionDAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202011181325164_InitialCreate"; }
+            get { return "202011261559188_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

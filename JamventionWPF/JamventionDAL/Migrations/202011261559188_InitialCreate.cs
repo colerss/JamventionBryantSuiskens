@@ -28,24 +28,24 @@
                         TelephoneNr = c.String(maxLength: 15),
                         IsVegetarian = c.Boolean(nullable: false),
                         RoleID = c.Int(nullable: false),
-                        InvoiceId = c.Int(nullable: false),
-                        RoomID = c.Int(nullable: false),
+                        InvoiceID = c.Int(),
+                        RoomID = c.Int(),
                     })
                 .PrimaryKey(t => t.GuestID)
                 .ForeignKey("JAM.GuestRoles", t => t.RoleID, cascadeDelete: true)
-                .ForeignKey("JAM.Invoices", t => t.InvoiceId, cascadeDelete: true)
-                .ForeignKey("JAM.Rooms", t => t.RoomID, cascadeDelete: true)
-                .ForeignKey("JAM.Workshops", t => t.GuestID)
-                .Index(t => t.GuestID)
+                .ForeignKey("JAM.Invoices", t => t.InvoiceID)
+                .ForeignKey("JAM.Residences", t => t.ResidenceID, cascadeDelete: true)
+                .ForeignKey("JAM.Rooms", t => t.RoomID)
+                .Index(t => t.ResidenceID)
                 .Index(t => t.RoleID)
-                .Index(t => t.InvoiceId)
+                .Index(t => t.InvoiceID)
                 .Index(t => t.RoomID);
             
             CreateTable(
                 "JAM.Invoices",
                 c => new
                     {
-                        InvoiceID = c.Int(nullable: false, identity: true),
+                        InvoiceID = c.Int(nullable: false),
                         DebitorNr = c.Int(nullable: false),
                         TicketTypeID = c.Int(nullable: false),
                     })
@@ -71,7 +71,7 @@
                 c => new
                     {
                         TicketTypeID = c.Int(nullable: false, identity: true),
-                        TicketNaam = c.String(nullable: false),
+                        TicketName = c.String(nullable: false),
                         TicketPrice = c.Decimal(nullable: false, storeType: "money"),
                         OnFriday = c.Boolean(nullable: false),
                         OnSaturday = c.Boolean(nullable: false),
@@ -90,9 +90,7 @@
                         NationalityID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ResidenceID)
-                .ForeignKey("JAM.Guests", t => t.ResidenceID)
                 .ForeignKey("JAM.Nationalities", t => t.NationalityID, cascadeDelete: true)
-                .Index(t => t.ResidenceID)
                 .Index(t => t.NationalityID);
             
             CreateTable(
@@ -142,7 +140,6 @@
                     {
                         WorkshopID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        TeacherID = c.Int(),
                         TimeslotID = c.Int(nullable: false),
                         LocatieID = c.Int(nullable: false),
                         Slots = c.Int(nullable: false),
@@ -175,6 +172,20 @@
                 .ForeignKey("JAM.Guests", t => t.GuestID, cascadeDelete: true)
                 .ForeignKey("JAM.Workshops", t => t.WorkshopID, cascadeDelete: true)
                 .Index(t => t.GuestID)
+                .Index(t => t.WorkshopID);
+            
+            CreateTable(
+                "JAM.WorkshopTeacher",
+                c => new
+                    {
+                        WorkshopParticipantID = c.Int(nullable: false, identity: true),
+                        TeacherID = c.Int(nullable: false),
+                        WorkshopID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.WorkshopParticipantID)
+                .ForeignKey("JAM.Guests", t => t.TeacherID, cascadeDelete: true)
+                .ForeignKey("JAM.Workshops", t => t.WorkshopID, cascadeDelete: true)
+                .Index(t => t.TeacherID)
                 .Index(t => t.WorkshopID);
             
             CreateTable(
@@ -222,7 +233,8 @@
             DropForeignKey("JAM.LocalRooms", "RoomTypeID", "JAM.RoomTypes");
             DropForeignKey("JAM.LocalRooms", "RoomID", "JAM.Rooms");
             DropForeignKey("JAM.Workshops", "TimeslotID", "JAM.TimeSlots");
-            DropForeignKey("JAM.Guests", "GuestID", "JAM.Workshops");
+            DropForeignKey("JAM.WorkshopTeacher", "WorkshopID", "JAM.Workshops");
+            DropForeignKey("JAM.WorkshopTeacher", "TeacherID", "JAM.Guests");
             DropForeignKey("JAM.WorkshopParticipants", "WorkshopID", "JAM.Workshops");
             DropForeignKey("JAM.WorkshopParticipants", "GuestID", "JAM.Guests");
             DropForeignKey("JAM.WorkshopModels", "WorkshopID", "JAM.Workshops");
@@ -230,14 +242,16 @@
             DropForeignKey("JAM.WorkshopModels", "ModelID", "JAM.Guests");
             DropForeignKey("JAM.Guests", "RoomID", "JAM.Rooms");
             DropForeignKey("JAM.Residences", "NationalityID", "JAM.Nationalities");
-            DropForeignKey("JAM.Residences", "ResidenceID", "JAM.Guests");
-            DropForeignKey("JAM.Guests", "InvoiceId", "JAM.Invoices");
+            DropForeignKey("JAM.Guests", "ResidenceID", "JAM.Residences");
             DropForeignKey("JAM.Invoices", "TicketTypeID", "JAM.TicketTypes");
             DropForeignKey("JAM.Payments", "InvoiceID", "JAM.Invoices");
+            DropForeignKey("JAM.Guests", "InvoiceID", "JAM.Invoices");
             DropForeignKey("JAM.Guests", "RoleID", "JAM.GuestRoles");
             DropIndex("JAM.OtherRooms", new[] { "RoomID" });
             DropIndex("JAM.LocalRooms", new[] { "RoomTypeID" });
             DropIndex("JAM.LocalRooms", new[] { "RoomID" });
+            DropIndex("JAM.WorkshopTeacher", new[] { "WorkshopID" });
+            DropIndex("JAM.WorkshopTeacher", new[] { "TeacherID" });
             DropIndex("JAM.WorkshopParticipants", new[] { "WorkshopID" });
             DropIndex("JAM.WorkshopParticipants", new[] { "GuestID" });
             DropIndex("JAM.Workshops", new[] { "Location_LocationID" });
@@ -245,16 +259,16 @@
             DropIndex("JAM.WorkshopModels", new[] { "WorkshopID" });
             DropIndex("JAM.WorkshopModels", new[] { "ModelID" });
             DropIndex("JAM.Residences", new[] { "NationalityID" });
-            DropIndex("JAM.Residences", new[] { "ResidenceID" });
             DropIndex("JAM.Payments", new[] { "InvoiceID" });
             DropIndex("JAM.Invoices", new[] { "TicketTypeID" });
             DropIndex("JAM.Guests", new[] { "RoomID" });
-            DropIndex("JAM.Guests", new[] { "InvoiceId" });
+            DropIndex("JAM.Guests", new[] { "InvoiceID" });
             DropIndex("JAM.Guests", new[] { "RoleID" });
-            DropIndex("JAM.Guests", new[] { "GuestID" });
+            DropIndex("JAM.Guests", new[] { "ResidenceID" });
             DropTable("JAM.OtherRooms");
             DropTable("JAM.LocalRooms");
             DropTable("JAM.TimeSlots");
+            DropTable("JAM.WorkshopTeacher");
             DropTable("JAM.WorkshopParticipants");
             DropTable("JAM.Locations");
             DropTable("JAM.Workshops");

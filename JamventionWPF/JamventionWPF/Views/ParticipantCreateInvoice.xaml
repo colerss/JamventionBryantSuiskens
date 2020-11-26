@@ -7,6 +7,7 @@
          Background="Gray"
         mc:Ignorable="d"
         x:Name="Invoice"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Invoice Creation" Height="300" Width="400">
     <Grid>
@@ -23,6 +24,11 @@
                 <TextBox materialDesign:HintAssist.Hint="DebitorNr" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding InvoiceCreate.DebitorNr, ValidatesOnDataErrors=True}"  />
                 <TextBox materialDesign:HintAssist.Hint="Invoice Groep" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding InvoiceCreate.InvoiceVariant, ValidatesOnDataErrors=True}"  />
                 <ComboBox Margin="0 8 0 0" ItemsSource="{Binding TicketTypes}"  SelectedValue="{Binding InvoiceCreate.TicketTypeID}" SelectedValuePath="TicketTypeID" DisplayMemberPath="TicketName" materialDesign:HintAssist.Hint="Ticketype" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding IsWeekendTicket}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ComboBox>
                 <ComboBox IsEnabled="{Binding WeekendTicket}" Margin="0 8 0 0" ItemsSource="{Binding Rooms}" SelectedValue="{Binding Guest.RoomID}" SelectedValuePath="RoomID" materialDesign:HintAssist.Hint="Kamer" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -24" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBox.ItemsPanel>
@@ -30,11 +36,12 @@
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
+                    
                 </ComboBox>
             </StackPanel>
         </GroupBox>
 
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer Toevoegen" Command="{Binding}" CommandParameter="NewRoom"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer Toevoegen" Command="{Binding}" CommandParameter="AddGuest"/>
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Annuleren"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=Invoice}"  />
 
     </Grid>

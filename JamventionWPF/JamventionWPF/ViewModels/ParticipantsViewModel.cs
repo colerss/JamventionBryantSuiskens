@@ -74,7 +74,7 @@ namespace JamventionWPF.ViewModels
             get
             {
                 return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 2));
-            }
+            }         
         }
         public ObservableCollection<Guest> Teachers
         {
@@ -97,6 +97,10 @@ namespace JamventionWPF.ViewModels
             set {
                 _guests = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("Other");
+                NotifyPropertyChanged("Teachers");
+                NotifyPropertyChanged("Models");
+                NotifyPropertyChanged("Participants");
             }
         }
         
@@ -104,14 +108,8 @@ namespace JamventionWPF.ViewModels
 
         public ParticipantsViewModel()
         {
-            LoadDatagrid();
-            GuestCreate = new Guest {
-            GuestID = (unitOfWork.RepoGuests.GetMaxPK(x => x.ResidenceID) + 1)
-            };
-            ResidenceCreate = new Residence
-            {
-                ResidenceID = (unitOfWork.RepoResidence.GetMaxPK(x => x.ResidenceID) + 1)
-            };
+            ResetFields();
+
         }
         public void LoadDatagrid()
         {
@@ -158,19 +156,12 @@ namespace JamventionWPF.ViewModels
 
         public void CreateGuest()
         {
-           
+            GuestCreate.ResidenceID = ResidenceCreate.ResidenceID;
             if (GuestCreate.RoleID != 1)
             {
                 if (AddNonParticipant() > 0)
                 {
-                    GuestCreate = new Guest
-                    {
-                        GuestID = (unitOfWork.RepoGuests.GetMaxPK(x => x.ResidenceID) + 1)
-                    };
-                    ResidenceCreate = new Residence
-                    {
-                        ResidenceID = (unitOfWork.RepoResidence.GetMaxPK(x => x.ResidenceID) + 1)
-                    };
+                    ResetFields();
                 } 
             }
             else
@@ -179,16 +170,29 @@ namespace JamventionWPF.ViewModels
                 ParticipantInvoiceViewModel viewModel = new ParticipantInvoiceViewModel(GuestCreate, ResidenceCreate);
                 invoiceCreate.DataContext = viewModel;
                 invoiceCreate.ShowDialog();
+                ResetFields();
             }
             
         }
+        public void ResetFields()
+        {
+            LoadDatagrid();
+            GuestCreate = new Guest
+            {
+                GuestID = (unitOfWork.RepoGuests.GetMaxPK(x => x.GuestID) + 1)
+            };
+            ResidenceCreate = new Residence
+            {
+                ResidenceID = (unitOfWork.RepoResidence.GetMaxPK(x => x.ResidenceID) + 1)
+            };
 
+        }
         public int AddNonParticipant()
         {
-            GuestCreate.ResidenceID = ResidenceCreate.ResidenceID;
+            
             try
             {
-               if ( GuestCreate.InvoiceId == null)
+               if ( GuestCreate.InvoiceID == null)
                  {
                    unitOfWork.RepoResidence.AddOrEdit(ResidenceCreate);
                    unitOfWork.RepoGuests.AddOrEdit(GuestCreate);

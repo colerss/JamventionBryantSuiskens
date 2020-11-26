@@ -90,8 +90,19 @@ namespace JamventionDAL.Data.Repository
 
         public int GetMaxPK(Func<T, int> columnSelector)
         {
-            var maxId = Context.Set<T>().Max(columnSelector);
-            return maxId;
+   
+            try
+            {
+                var maxId = Context.Set<T>().Max(columnSelector);
+                return maxId;
+            }
+            catch (InvalidOperationException)
+            {
+                return 0;
+                throw;
+            }
+          
+            
         }
     }
 }
