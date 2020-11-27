@@ -19,7 +19,7 @@ namespace JamventionWPF.ViewModels
         private Invoice _invoiceCreate;
         private bool _weekendTicket;
         private ObservableCollection<TicketType> _ticketTypes;
-        private ObservableCollection<Room> _rooms;
+        private ObservableCollection<LocalRoom> _localRooms;
 
         public ParticipantInvoiceViewModel(Guest guest, Residence residence)
         {
@@ -27,19 +27,17 @@ namespace JamventionWPF.ViewModels
             Guest.GuestID = unitOfWork.RepoGuests.GetMaxPK(x => x.GuestID) + 1;
             _residence = residence;
             IsWeekendTicket = new DelegateCommand<SelectionChangedEventArgs>(IsWeekendTicketCommand);
-            InvoiceCreate = new Invoice();
+            InvoiceCreate = new Invoice {
+                InvoiceID = unitOfWork.RepoInvoice.GetMaxPK(x => x.InvoiceID) + 1
+            };
         }
        
         public override void LoadComboboxes()
         {
             IEnumerable<TicketType> ticketTypes = unitOfWork.RepoTicketType.Retrieve();
             TicketTypes = new ObservableCollection<TicketType>(ticketTypes);
-            IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
-            IEnumerable<Room> otherRooms = unitOfWork.RepoOtherRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count);
-            List<Room> roomJoin = new List<Room>(localRooms);
-            roomJoin.AddRange(otherRooms);
-            IEnumerable<Room> rooms = roomJoin;
-            Rooms = new ObservableCollection<Room>(rooms);
+            IEnumerable<LocalRoom> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
+            Rooms = new ObservableCollection<LocalRoom>(localRooms.Where(x => x.RoomTypeID < 6));
             base.LoadComboboxes();
         }
 
@@ -56,15 +54,15 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<Room> Rooms
+        public ObservableCollection<LocalRoom> Rooms
         {
             get
             {
-                return _rooms;
+                return _localRooms;
             }
             set
             {
-                _rooms = value;
+                _localRooms = value;
                 NotifyPropertyChanged();
             }
         }

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\JamventionEntities.cs" />
+    <Compile Include="Data\Partials\Invoice.cs" />
     <Compile Include="Data\Partials\JamventionEntities.cs" />
     <Compile Include="Data\Partials\Room.cs" />
     <Compile Include="Data\Repository\IRepository.cs" />

@@ -99,8 +99,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\LessonsViewModel.cs" />
-    <Compile Include="ViewModels\ParticipantDetailViewModel.cs" />
-    <Compile Include="ViewModels\ParticipantInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Detail View Models\ParticipantDetailViewModel.cs" />
+    <Compile Include="ViewModels\Dialog View Models\ParticipantInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Dialog View Models\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
     <Compile Include="Views\ParticipantCreateInvoice.xaml.cs">
       <DependentUpon>ParticipantCreateInvoice.xaml</DependentUpon>

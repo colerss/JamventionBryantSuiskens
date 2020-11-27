@@ -113,7 +113,7 @@ namespace JamventionWPF.ViewModels
         }
         public void LoadDatagrid()
         {
-            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality, x => x.Invoice, x => x.Invoice.TicketType) ;
+            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve(x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality, x => x.Invoice, x => x.Invoice.TicketType, x => x.Invoice.Payments) ;
             Guests = new ObservableCollection<Guest>(guests);
         }
 
@@ -148,11 +148,30 @@ namespace JamventionWPF.ViewModels
                 case "CreateGuest":
                     CreateGuest();
                     break;
+                case "Delete":
+                    DeleteGuest();
+                    break;
             }
         }
         #endregion
 
-        
+        public void DeleteGuest()
+        {
+            try
+            {
+                unitOfWork.RepoGuests.Delete(SelectedGuest);
+                unitOfWork.Save();
+                Messenger.Default.Send("Gast verwijderd");
+                ResetFields();
+            }
+            catch (Exception ex)
+            {
+
+                Messenger.Default.Send(ex.Message);
+                ErrorLogging(ex);
+            }
+
+        }
 
         public void CreateGuest()
         {
