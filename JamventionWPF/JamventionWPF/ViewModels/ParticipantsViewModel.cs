@@ -247,6 +247,7 @@ namespace JamventionWPF.ViewModels
             ParticipantDetailView view = new ParticipantDetailView();
             view.DataContext = vm;
             view.ShowDialog();
+            ResetFields();
         }
         public void OpenLessons()
         {

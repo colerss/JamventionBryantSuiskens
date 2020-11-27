@@ -17,6 +17,7 @@ namespace JamventionWPF.ViewModels
         private Residence _residenceDetails;
         private ObservableCollection<Room> _rooms;
         private Invoice _invoice;
+        private ObservableCollection<Payment> _payments;
         public override void LoadComboboxes()
         {
             IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
@@ -26,8 +27,6 @@ namespace JamventionWPF.ViewModels
             IEnumerable<Room> rooms = roomJoin;
             Rooms = new ObservableCollection<Room>(rooms);
             base.LoadComboboxes();
-
-
         }
 
         public Visibility IsParticipant
@@ -55,7 +54,14 @@ namespace JamventionWPF.ViewModels
                 return;
             }
             Invoice = GuestDetails.Invoice;
+            LoadDatagrid();
         }
+        public void LoadDatagrid()
+        {
+            Payments = new ObservableCollection<Payment>(Invoice.Payments);
+        }
+
+      
         public override string this[string columnName]
         {
             get
@@ -63,7 +69,18 @@ namespace JamventionWPF.ViewModels
                 return "";
             }
         }
-
+        public ObservableCollection<Payment> Payments
+        {
+            get
+            {
+                return _payments;
+            }
+            set
+            {
+                _payments = value;
+                NotifyPropertyChanged();
+            }
+        }
         public ObservableCollection<Room> Rooms
         {
             get
@@ -144,7 +161,6 @@ namespace JamventionWPF.ViewModels
             PaymentView view = new PaymentView();
             view.DataContext = vm;
             view.ShowDialog();
-           
         }
         public int SaveChanges()
         {

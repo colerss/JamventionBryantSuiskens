@@ -39,10 +39,10 @@
                 <TextBox materialDesign:HintAssist.Hint="Ticketsoort" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding Invoice.TicketType.TicketName, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
                     <TextBox materialDesign:HintAssist.Hint="Resterende kosten" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Invoice.RemainingCosts, ValidatesOnDataErrors=True, Mode=OneWay}"  IsReadOnly="True"/>
                     <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="2" Grid.Column="0" Margin="5"  IsEnabled="{Binding Invoice.OutstandingPayment}" Content="Betaling Toevoegen" Command="{Binding}" CommandParameter="AddPayment"/>
-                    <DataGrid Height="auto" ItemsSource="{Binding GuestDetails.Invoice.Payments}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid Height="auto" ItemsSource="{Binding Payments}" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Betalingssom" Binding="{Binding Path=AmountMoney}"/>
-                            <DataGridTextColumn Header="Datum" Binding="{Binding Path=PaymentDate}"/>
+                            <DataGridTextColumn Header="Datum" Binding="{Binding Path=PaymentDate, StringFormat=\{0:dd.MM.yy\}}"/>
                         </DataGrid.Columns>
                 </DataGrid>
                 

@@ -42,6 +42,16 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
+
+        public decimal Subtotal()
+        {
+            decimal subtotal = 0;
+            foreach (Payment payment in Invoice.Payments)
+            {
+                subtotal += payment.Amount;
+            }
+            return (Invoice.TicketType.TicketPrice - subtotal);
+        }
         public override string this[string columnName] => throw new NotImplementedException();
 
         public override bool CanExecute(object parameter)
@@ -54,6 +64,10 @@ namespace JamventionWPF.ViewModels
             switch (parameter.ToString())
             {
                 case "AddPayment":
+                    if (Subtotal() - Payment.Amount > -0.01m)
+                    {
+
+                    
                     Payment.InvoiceID = Invoice.InvoiceID;
                     Payment.PaymentDate = DateTime.Today;
                     unitOfWork.RepoPayment.Add(Payment);
@@ -64,6 +78,11 @@ namespace JamventionWPF.ViewModels
                     else
                     {
                         Messenger.Default.Send("Er is iets foutgegaan");
+                    }
+                    }
+                    else
+                    {
+                        Messenger.Default.Send("Betaling is meer dan het uitstaande bedrag");
                     }
                     break;
             }
