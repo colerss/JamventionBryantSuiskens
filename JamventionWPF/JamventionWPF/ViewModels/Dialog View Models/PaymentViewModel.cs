@@ -14,7 +14,8 @@ namespace JamventionWPF.ViewModels
         private Payment _payment;
         public PaymentViewModel(Invoice invoice)
         {
-
+            Invoice = invoice;
+            Payment = new Payment();
         }
         public Payment Payment
         {
@@ -33,10 +34,12 @@ namespace JamventionWPF.ViewModels
             get
             {
                 return _invoice;
+               
             }
             set
             {
                 _invoice = value;
+                NotifyPropertyChanged();
             }
         }
         public override string this[string columnName] => throw new NotImplementedException();
@@ -50,12 +53,11 @@ namespace JamventionWPF.ViewModels
         {
             switch (parameter.ToString())
             {
-                case "Submit":
-                    Invoice.Payments.Add(Payment);
-                    unitOfWork.RepoInvoice.Edit(Invoice);
+                case "AddPayment":
+                    Payment.InvoiceID = Invoice.InvoiceID;
                     Payment.PaymentDate = DateTime.Today;
                     unitOfWork.RepoPayment.Add(Payment);
-                    if (unitOfWork.Save() > 1)
+                    if (unitOfWork.Save() != 0)
                     {
                         Messenger.Default.Send("Betaling toegevoegd");
                     }
@@ -65,5 +67,6 @@ namespace JamventionWPF.ViewModels
                     }
                     break;
             }
+        }
     }
 }

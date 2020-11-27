@@ -35,14 +35,14 @@
         <GroupBox Grid.Column="1" Grid.Row="1" Margin="5" Header="Invoice info" Visibility="{Binding IsParticipant}"  Background="White" >
             <ScrollViewer>
             <StackPanel>
-                    <TextBox materialDesign:HintAssist.Hint="Invoice" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.DebitorNr, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
-                <TextBox materialDesign:HintAssist.Hint="Ticketsoort" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.TicketType.TicketName, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
-                    <TextBox materialDesign:HintAssist.Hint="Resterende kosten" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding GuestDetails.Invoice.RemainingCosts, ValidatesOnDataErrors=True, Mode=OneWay}"  IsReadOnly="True"/>
-                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="2" Grid.Column="0" Margin="5" Content="Betaling Toevoegen" Command="{Binding}" CommandParameter="AddPayment"/>
-                    <DataGrid Height="75" ItemsSource="{Binding GuestDetails.Invoice.Payments}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <TextBox materialDesign:HintAssist.Hint="Invoice" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding Invoice.DebitorNr, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
+                <TextBox materialDesign:HintAssist.Hint="Ticketsoort" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Text="{Binding Invoice.TicketType.TicketName, ValidatesOnDataErrors=True}"  IsReadOnly="True"/>
+                    <TextBox materialDesign:HintAssist.Hint="Resterende kosten" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Invoice.RemainingCosts, ValidatesOnDataErrors=True, Mode=OneWay}"  IsReadOnly="True"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="2" Grid.Column="0" Margin="5"  IsEnabled="{Binding Invoice.OutstandingPayment}" Content="Betaling Toevoegen" Command="{Binding}" CommandParameter="AddPayment"/>
+                    <DataGrid Height="auto" ItemsSource="{Binding GuestDetails.Invoice.Payments}" IsReadOnly="True" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Betalingssom" Binding="{Binding Path=Payment.Amount}"/>
-                            <DataGridTextColumn Header="Datum" Binding="{Binding Path=Payment.PaymentDate}"/>
+                            <DataGridTextColumn Header="Betalingssom" Binding="{Binding Path=AmountMoney}"/>
+                            <DataGridTextColumn Header="Datum" Binding="{Binding Path=PaymentDate}"/>
                         </DataGrid.Columns>
                 </DataGrid>
                 

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using JamventionDAL;
+using JamventionWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,11 +11,12 @@ using System.Windows;
 
 namespace JamventionWPF.ViewModels
 {
-   public class ParticipantDetailViewModel:BasisViewModel
+    public class ParticipantDetailViewModel : BasisViewModel
     {
         private Guest _guestDetails;
         private Residence _residenceDetails;
         private ObservableCollection<Room> _rooms;
+        private Invoice _invoice;
         public override void LoadComboboxes()
         {
             IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
@@ -24,8 +26,8 @@ namespace JamventionWPF.ViewModels
             IEnumerable<Room> rooms = roomJoin;
             Rooms = new ObservableCollection<Room>(rooms);
             base.LoadComboboxes();
-           
-           
+
+
         }
 
         public Visibility IsParticipant
@@ -46,10 +48,13 @@ namespace JamventionWPF.ViewModels
         {
             GuestDetails = guest;
             ResidenceDetails = GuestDetails.Residence;
+            
             if (GuestDetails.RoleID != 1)
             {
                 GuestRoles = new ObservableCollection<GuestRole>(GuestRoles.Where(x => x.RoleID != 1));
+                return;
             }
+            Invoice = GuestDetails.Invoice;
         }
         public override string this[string columnName]
         {
@@ -68,6 +73,18 @@ namespace JamventionWPF.ViewModels
             set
             {
                 _rooms = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Invoice Invoice
+        {
+            get
+            {
+                return _invoice;
+            }
+            set
+            {
+                _invoice = value;
                 NotifyPropertyChanged();
             }
         }
@@ -113,9 +130,21 @@ namespace JamventionWPF.ViewModels
                     {
                         Messenger.Default.Send("Geen aanpassingen doorgegeven");
                     }
-                   
+
                     break;
+                case "AddPayment":
+                    AddPayment();
+                    break;
+
             }
+        }
+        public void AddPayment()
+        {
+            PaymentViewModel vm = new PaymentViewModel(GuestDetails.Invoice);
+            PaymentView view = new PaymentView();
+            view.DataContext = vm;
+            view.ShowDialog();
+           
         }
         public int SaveChanges()
         {

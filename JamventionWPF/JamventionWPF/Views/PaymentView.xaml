@@ -4,9 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
+        Background="Gray"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        x:Name="Payment"
         mc:Ignorable="d"
-        Title="PaymentView" Height="450" Width="800">
+        Title="PaymentView" Height="120" Width="350">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Som:" VerticalAlignment="Center" FontSize="20"/>
+        <TextBox Background="White" Grid.Column="1" Margin="5" FontSize="15" Padding="0 -5" materialDesign:HintAssist.Hint="Betaling" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Payment.Amount, ValidatesOnDataErrors=True}"  />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="0" Margin="5" Content="Toevoegen Betaling" Command="{Binding}" CommandParameter="AddPayment" />
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="3" Margin="5" Content="Terug"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=Payment}"  />
     </Grid>
 </Window>

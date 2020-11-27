@@ -31,11 +31,16 @@ namespace JamventionDAL
             }
         }
         [NotMapped]
-        public bool IsPayedOff
+        public bool OutstandingPayment
         {
             get
             {
-                return int.Parse(RemainingCosts) < 1;
+                decimal subtotal = 0;
+                foreach (Payment payment in Payments)
+                {
+                    subtotal += payment.Amount;
+                }
+                return ((TicketType.TicketPrice - subtotal) > 1);
             }
         }
     }

@@ -109,6 +109,9 @@
     <Compile Include="Views\ParticipantDetailView.xaml.cs">
       <DependentUpon>ParticipantDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaymentView.xaml.cs">
+      <DependentUpon>PaymentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlanningView.xaml.cs">
       <DependentUpon>PlanningView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <DependentUpon>ParticipantsView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PlanningView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
