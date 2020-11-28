@@ -10,7 +10,7 @@
         Title="Rooms" Height="450" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -23,18 +23,33 @@
 
         <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="3">
             <TabItem Header="Vrijdag">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5" ItemsSource="{Binding FridayWorkshops}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedWorkshop}" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Zaterdag">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5"  ItemsSource="{Binding SaturdayWorkshops}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedWorkshop}" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Zondag">
-                <DataGrid Margin="5" >
-
+                <DataGrid Margin="5"  ItemsSource="{Binding SundayWorkshops}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedWorkshop}" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
@@ -43,7 +58,7 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Plekken vrij in workshop:</Label>
-            <ProgressBar Value="{Binding PlekkenVrij}"  Height="10" Margin="5" Maximum="{Binding Ruimte}" />
+            <ProgressBar Value="{Binding SpotsLeft}"  Height="10" Margin="5" Maximum="{Binding SelectedWorkshop.Slots}" />
         </StackPanel>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Nieuwe Workshop" />
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="2" Margin="5" Content="Terug" />

@@ -19,6 +19,7 @@ namespace JamventionDAL.Data.UnitOfWork
         private IRepository<Invoice> _repoInvoice;
         private IRepository<TicketType> _repoTicketType;
         private IRepository<Payment> _repoPayment;
+        private IRepository<Workshop> _repoWorkshop;
         public UnitOfWork(JamventionEntities jamventionEntities)
         {
             this.JamventionEntities = jamventionEntities;
@@ -136,6 +137,18 @@ namespace JamventionDAL.Data.UnitOfWork
                     _repoInvoice = new Repository<Invoice>(this.JamventionEntities);
                 }
                 return _repoInvoice;
+            }
+        }
+
+        public IRepository<Workshop> RepoWorkshop
+        {
+            get
+            {
+                if(_repoWorkshop == null)
+                {
+                    _repoWorkshop = new Repository<Workshop>(this.JamventionEntities);
+                }
+                return _repoWorkshop;
             }
         }
 

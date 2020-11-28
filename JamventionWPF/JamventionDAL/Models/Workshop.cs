@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace JamventionDAL
 {
     [Table("Workshops", Schema = "JAM")]
-    public class Workshop
+    public partial class Workshop
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,6 +25,7 @@ namespace JamventionDAL
         public ICollection<WorkshopModel> WorkshopModels { get; set; }
         public ICollection<WorkshopParticipant> WorkshopParticipants { get; set; }
         public ICollection<WorkshopTeacher> WorkshopTeachers { get; set; }
+        public TimeSlot TimeSlot { get; set; }
         public Location Location { get; set; }
     }
 }
