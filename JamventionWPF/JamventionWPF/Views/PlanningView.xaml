@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JamventionWPF.Views"
         Background="Gray"
+        x:Name="Workshops"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Rooms" Height="450" Width="900">
@@ -16,12 +17,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="2.5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="3">
+        <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="4">
             <TabItem Header="Vrijdag">
                 <DataGrid Margin="5" ItemsSource="{Binding FridayWorkshops}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedWorkshop}" IsReadOnly="True">
                     <DataGrid.Columns>
@@ -53,15 +55,23 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="1">
-
+        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="1" ItemsSource="{Binding SelectedWorkshop.WorkshopParticipants}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Participant" Binding="{Binding Path=Guest.FullName, Mode=OneWay}"/>
+            </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
+        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="2" ItemsSource="{Binding SelectedWorkshop.WorkshopModels}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Models" Binding="{Binding Path=Model.FullName, Mode=OneWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Plekken vrij in workshop:</Label>
-            <ProgressBar Value="{Binding SpotsLeft}"  Height="10" Margin="5" Maximum="{Binding SelectedWorkshop.Slots}" />
+            <ProgressBar Value="{Binding SpotsLeft, Mode=OneWay}"  Height="10" Margin="5" Maximum="{Binding SelectedWorkshop.Slots, Mode=OneWay}" />
         </StackPanel>
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Nieuwe Workshop" />
-        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="2" Margin="5" Content="Terug" />
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="4" Grid.Column="1" Margin="5" Content="Nieuwe Workshop" Command="{Binding}" CommandParameter="NewWorkshop"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="4" Grid.Column="2" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
+        CommandParameter="{Binding ElementName=Workshops}" />
     </Grid>
 
 </Window>

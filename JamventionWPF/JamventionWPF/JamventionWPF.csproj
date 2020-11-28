@@ -103,6 +103,7 @@
     <Compile Include="ViewModels\Dialog View Models\ParticipantInvoiceViewModel.cs" />
     <Compile Include="ViewModels\Dialog View Models\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
+    <Compile Include="ViewModels\Dialog View Models\WorkshopCreateViewModel.cs" />
     <Compile Include="Views\ParticipantCreateInvoice.xaml.cs">
       <DependentUpon>ParticipantCreateInvoice.xaml</DependentUpon>
     </Compile>

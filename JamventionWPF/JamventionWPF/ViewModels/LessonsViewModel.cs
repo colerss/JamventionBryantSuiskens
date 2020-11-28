@@ -44,7 +44,7 @@ namespace JamventionWPF.ViewModels
         public ObservableCollection<Workshop> FridayWorkshops => new ObservableCollection<Workshop>(Workshops.Where(x => x.TimeSlot.Day.DayOfWeek == DayOfWeek.Friday));
         public ObservableCollection<Workshop> SaturdayWorkshops => new ObservableCollection<Workshop>(Workshops.Where(x => x.TimeSlot.Day.DayOfWeek == DayOfWeek.Saturday));
         public ObservableCollection<Workshop> SundayWorkshops => new ObservableCollection<Workshop>(Workshops.Where(x => x.TimeSlot.Day.DayOfWeek == DayOfWeek.Sunday));
-        public int SpotsLeft => SelectedWorkshop.Slots - SelectedWorkshop.WorkshopParticipants.Count; 
+        public int SpotsLeft => SelectedWorkshop != null? SelectedWorkshop.Slots - SelectedWorkshop.WorkshopParticipants.Count : 0; 
         public Workshop SelectedWorkshop
         {
             get { return _selectedWorkshop; }
@@ -71,8 +71,18 @@ namespace JamventionWPF.ViewModels
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            switch (parameter.ToString())
+            {
+                case "AddWorkshop":
+                    AddWorkshop();
+                    break;
+            }
         }
         #endregion
+
+        void AddWorkshop()
+        {
+
+        }
     }
 }

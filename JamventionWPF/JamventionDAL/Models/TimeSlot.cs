@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace JamventionDAL
 {
     [Table("TimeSlots", Schema = "JAM")]
-    public class TimeSlot
+    public partial class TimeSlot
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
