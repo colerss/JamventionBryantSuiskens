@@ -73,6 +73,14 @@
     <Compile Include="Migrations\202011261559188_InitialCreate.designer.cs">
       <DependentUpon>202011261559188_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011301224238_setToTimespan.cs" />
+    <Compile Include="Migrations\202011301224238_setToTimespan.designer.cs">
+      <DependentUpon>202011301224238_setToTimespan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011301457210_typofix.cs" />
+    <Compile Include="Migrations\202011301457210_typofix.designer.cs">
+      <DependentUpon>202011301457210_typofix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -98,6 +106,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011261559188_InitialCreate.resx">
       <DependentUpon>202011261559188_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011301224238_setToTimespan.resx">
+      <DependentUpon>202011301224238_setToTimespan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011301457210_typofix.resx">
+      <DependentUpon>202011301457210_typofix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

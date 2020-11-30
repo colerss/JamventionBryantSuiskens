@@ -16,8 +16,8 @@ namespace JamventionDAL
         public int TimeSlotID { get; set; }
         [DataType(DataType.Date)]
         public DateTime Day { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
 
 //navprops

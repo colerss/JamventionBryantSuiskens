@@ -11,7 +11,9 @@
         Title="Rooms" Height="450" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -23,7 +25,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="4">
+        <TabControl Grid.Column="0" Margin="5" Grid.RowSpan="4" Grid.ColumnSpan="3">
             <TabItem Header="Vrijdag">
                 <DataGrid Margin="5" ItemsSource="{Binding FridayWorkshops}" AutoGenerateColumns="False" SelectedValue="{Binding SelectedWorkshop}" IsReadOnly="True">
                     <DataGrid.Columns>
@@ -55,22 +57,22 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="1" ItemsSource="{Binding SelectedWorkshop.WorkshopParticipants}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+        <DataGrid Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="1" ItemsSource="{Binding SelectedWorkshop.WorkshopParticipants}" AutoGenerateColumns="False"  IsReadOnly="True"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Participant" Binding="{Binding Path=Guest.FullName, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Margin="5" Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="2" ItemsSource="{Binding SelectedWorkshop.WorkshopModels}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+        <DataGrid Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="2" ItemsSource="{Binding SelectedWorkshop.WorkshopModels}" AutoGenerateColumns="False"  IsReadOnly="True"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Models" Binding="{Binding Path=Model.FullName, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
+        <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Plekken vrij in workshop:</Label>
             <ProgressBar Value="{Binding SpotsLeft, Mode=OneWay}"  Height="10" Margin="5" Maximum="{Binding SelectedWorkshop.Slots, Mode=OneWay}" />
         </StackPanel>
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="4" Grid.Column="1" Margin="5" Content="Nieuwe Workshop" Command="{Binding}" CommandParameter="NewWorkshop"/>
-        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="4" Grid.Column="2" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="4" Grid.Column="3" Margin="5" Content="Nieuwe Workshop" Command="{Binding}" CommandParameter="AddWorkshop"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="4" Grid.Column="4" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
         CommandParameter="{Binding ElementName=Workshops}" />
     </Grid>
 

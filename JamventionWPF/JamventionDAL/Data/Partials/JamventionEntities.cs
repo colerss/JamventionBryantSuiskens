@@ -23,7 +23,7 @@ namespace JamventionDAL
                         .Select(x => x.ErrorMessage);
 
                 // Join the list to a single string.
-                var fullErrorMessage = string.Join("; ", errorMessages, "\n");
+                var fullErrorMessage = string.Join("; ", errorMessages);
 
                 // Combine the original exception message with the new one.
                 var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);

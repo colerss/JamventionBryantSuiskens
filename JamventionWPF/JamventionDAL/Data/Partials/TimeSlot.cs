@@ -8,6 +8,8 @@ namespace JamventionDAL
 {
     public partial class TimeSlot
     {
-        public string FullTime => StartTime.ToShortTimeString() + " - " + EndTime.ToShortTimeString();  
+        public string FullTime => StartTime + " - " + EndTime;
+
+        public string DayFullTime => Day.DayOfWeek + " " + FullTime;
     }
 }

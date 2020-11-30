@@ -17,7 +17,7 @@ namespace JamventionDAL
         [Required]
         public string Name { get; set; }
         [Required]
-        public int TimeslotID { get; set; }
+        public int TimeSlotID { get; set; }
         [Required]
         public int LocatieID { get; set; }
         public int Slots { get; set; }

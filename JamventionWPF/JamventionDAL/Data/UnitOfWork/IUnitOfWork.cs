@@ -20,6 +20,8 @@ namespace JamventionDAL.Data.UnitOfWork
         IRepository<TicketType> RepoTicketType { get; }
         IRepository<Payment> RepoPayment { get; }
         IRepository<Workshop> RepoWorkshop { get; }
+        IRepository<Location> RepoLocation { get; }
+        IRepository<TimeSlot> RepoTimeslot { get; }
         int Save();
     }
 }

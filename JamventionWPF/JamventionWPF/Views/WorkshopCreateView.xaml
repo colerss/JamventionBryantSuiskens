@@ -1,0 +1,33 @@
+﻿<Window x:Class="JamventionWPF.Views.WorkshopCreateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JamventionWPF.Views"
+        mc:Ignorable="d"
+        x:Name="AddWorkshop"
+        Background="Gray"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="WorkshopCreateView" Height="300" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopCreate.WorkshopName, ValidatesOnDataErrors=True}"  />
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Plekken" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopCreate.Slots, ValidatesOnDataErrors=True}"  />
+            <ComboBox Background="White" Margin="5" ItemsSource="{Binding Timeslots}"  SelectedValue="{Binding WorkshopCreate.TimeSlotID}" SelectedValuePath="TimeSlotID" DisplayMemberPath="DayFullTime" materialDesign:HintAssist.Hint="Tijdslot" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            <ComboBox Background="White" Margin="5" ItemsSource="{Binding Locations}"  SelectedValue="{Binding WorkshopCreate.LocationID}" SelectedValuePath="LocationID" DisplayMemberPath="LocationName" materialDesign:HintAssist.Hint="Locatie" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+        </StackPanel>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="0" Margin="5" Content="Toevoegen" Command="{Binding}" CommandParameter="AddWorkshop"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
+        CommandParameter="{Binding ElementName=AddWorkshop}" />
+    </Grid>
+</Window>

@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace JamventionWPF.ViewModels
 {
-    public class ParticipantDetailViewModel : BasisViewModel
+    public class ParticipantDetailViewModel : BasisParticipantViewModel
     {
         private Guest _guestDetails;
         private Residence _residenceDetails;

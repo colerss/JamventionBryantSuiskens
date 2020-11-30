@@ -1,4 +1,5 @@
 ﻿using JamventionDAL;
+using JamventionWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -82,7 +83,10 @@ namespace JamventionWPF.ViewModels
 
         void AddWorkshop()
         {
-
+            WorkshopCreateViewModel vm = new WorkshopCreateViewModel();
+            WorkshopCreateView view = new WorkshopCreateView();
+            view.DataContext = vm;
+            view.ShowDialog();
         }
     }
 }

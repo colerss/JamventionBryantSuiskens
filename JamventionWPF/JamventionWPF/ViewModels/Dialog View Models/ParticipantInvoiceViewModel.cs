@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace JamventionWPF.ViewModels
 {
-    class ParticipantInvoiceViewModel : BasisViewModel
+    class ParticipantInvoiceViewModel : BasisParticipantViewModel
     {
         private Guest _guest;
         private Residence _residence;

@@ -13,7 +13,7 @@ using JamventionDAL.Data.UnitOfWork;
 
 namespace JamventionWPF.ViewModels
 {
-    public class ParticipantsViewModel : BasisViewModel
+    public class ParticipantsViewModel : BasisParticipantViewModel
     {
         private bool _detailEnable;
         private Residence _residenceCreate;

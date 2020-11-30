@@ -19,48 +19,14 @@ namespace JamventionWPF.ViewModels
     public abstract class BasisViewModel : INotifyPropertyChanged, ICommand, IDataErrorInfo
     {
         protected IUnitOfWork unitOfWork = new UnitOfWork(new JamventionDAL.JamventionEntities());
-        //Breedgebruikte comboboxes
-        private ObservableCollection<Nationality> _nationalities;
-        private ObservableCollection<GuestRole> _guestRoles;
+       
         #region Startup routine
         public BasisViewModel()
         {
-           
-            LoadComboboxes();
             this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
         }
-        public virtual void LoadComboboxes()
-        {
-            IEnumerable<Nationality> nationalities = unitOfWork.RepoNationality.Retrieve();
-            IEnumerable<GuestRole> guestRoles = unitOfWork.RepoGuestRoles.Retrieve();
-            Nationalities = new ObservableCollection<Nationality>(nationalities);
-            GuestRoles = new ObservableCollection<GuestRole>(guestRoles);
-
-        }
-        public ObservableCollection<Nationality> Nationalities
-        {
-            get
-            {
-                return _nationalities;
-            }
-            set
-            {
-                _nationalities = value;
-                NotifyPropertyChanged();
-            }
-        }
-        public ObservableCollection<GuestRole> GuestRoles
-        {
-            get
-            {
-                return _guestRoles;
-            }
-            set
-            {
-                _guestRoles = value;
-                NotifyPropertyChanged();
-            }
-        }
+      
+       
         #endregion
         public static void ErrorLogging(Exception ex)
         {
@@ -133,6 +99,51 @@ namespace JamventionWPF.ViewModels
         public abstract bool CanExecute(object parameter);
 
         public abstract void Execute(object parameter);
+    }
+
+    public abstract class BasisParticipantViewModel : BasisViewModel
+    {
+        //Breedgebruikte comboboxes
+        private ObservableCollection<Nationality> _nationalities;
+        private ObservableCollection<GuestRole> _guestRoles;
+
+        public BasisParticipantViewModel()
+        {
+            LoadComboboxes();
+
+        }
+        public virtual void LoadComboboxes()
+        {
+            IEnumerable<Nationality> nationalities = unitOfWork.RepoNationality.Retrieve();
+            IEnumerable<GuestRole> guestRoles = unitOfWork.RepoGuestRoles.Retrieve();
+            Nationalities = new ObservableCollection<Nationality>(nationalities);
+            GuestRoles = new ObservableCollection<GuestRole>(guestRoles);
+        }
+
+        public ObservableCollection<Nationality> Nationalities
+        {
+            get
+            {
+                return _nationalities;
+            }
+            set
+            {
+                _nationalities = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<GuestRole> GuestRoles
+        {
+            get
+            {
+                return _guestRoles;
+            }
+            set
+            {
+                _guestRoles = value;
+                NotifyPropertyChanged();
+            }
+        }
     }
 }
 
