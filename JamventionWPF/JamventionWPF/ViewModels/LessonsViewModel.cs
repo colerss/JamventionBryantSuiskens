@@ -40,6 +40,9 @@ namespace JamventionWPF.ViewModels
             {
                 _workshops = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged("FridayWorkshops");
+                NotifyPropertyChanged("SaturdayWorkshops");
+                NotifyPropertyChanged("SundayWorkshops");
             }
         }
         public ObservableCollection<Workshop> FridayWorkshops => new ObservableCollection<Workshop>(Workshops.Where(x => x.TimeSlot.Day.DayOfWeek == DayOfWeek.Friday));
@@ -87,6 +90,7 @@ namespace JamventionWPF.ViewModels
             WorkshopCreateView view = new WorkshopCreateView();
             view.DataContext = vm;
             view.ShowDialog();
+            LoadDatagrid();
         }
     }
 }

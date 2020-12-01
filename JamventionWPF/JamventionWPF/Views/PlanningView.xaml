@@ -31,8 +31,8 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
-                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -41,8 +41,8 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
-                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -51,8 +51,8 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
-                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=Timeslot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Locatie.LocationNaam}"/>
+                        <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

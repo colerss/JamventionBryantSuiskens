@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="2">
-            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopCreate.WorkshopName, ValidatesOnDataErrors=True}"  />
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopCreate.Name, ValidatesOnDataErrors=True}"  />
             <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Plekken" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopCreate.Slots, ValidatesOnDataErrors=True}"  />
             <ComboBox Background="White" Margin="5" ItemsSource="{Binding Timeslots}"  SelectedValue="{Binding WorkshopCreate.TimeSlotID}" SelectedValuePath="TimeSlotID" DisplayMemberPath="DayFullTime" materialDesign:HintAssist.Hint="Tijdslot" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
             </ComboBox>

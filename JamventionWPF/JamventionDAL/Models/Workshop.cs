@@ -19,7 +19,7 @@ namespace JamventionDAL
         [Required]
         public int TimeSlotID { get; set; }
         [Required]
-        public int LocatieID { get; set; }
+        public int LocationID { get; set; }
         public int Slots { get; set; }
 
         public ICollection<WorkshopModel> WorkshopModels { get; set; }

@@ -81,6 +81,10 @@
     <Compile Include="Migrations\202011301457210_typofix.designer.cs">
       <DependentUpon>202011301457210_typofix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011301526460_typofix2.cs" />
+    <Compile Include="Migrations\202011301526460_typofix2.designer.cs">
+      <DependentUpon>202011301526460_typofix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011301457210_typofix.resx">
       <DependentUpon>202011301457210_typofix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011301526460_typofix2.resx">
+      <DependentUpon>202011301526460_typofix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
