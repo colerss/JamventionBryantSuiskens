@@ -185,7 +185,7 @@ namespace JamventionWPF.ViewModels
             }
             else
             {
-                ParticipantCreateInvoice invoiceCreate = new ParticipantCreateInvoice();
+                ParticipantCreateInvoiceView invoiceCreate = new ParticipantCreateInvoiceView();
                 ParticipantInvoiceViewModel viewModel = new ParticipantInvoiceViewModel(GuestCreate, ResidenceCreate);
                 invoiceCreate.DataContext = viewModel;
                 invoiceCreate.ShowDialog();

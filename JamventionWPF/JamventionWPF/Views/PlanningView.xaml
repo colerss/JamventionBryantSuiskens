@@ -69,8 +69,13 @@
         </DataGrid>
         <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Plekken vrij in workshop:</Label>
-            <ProgressBar Value="{Binding SpotsLeft, Mode=OneWay}"  Height="10" Margin="5" Maximum="{Binding SelectedWorkshop.Slots, Mode=OneWay}" />
+            <Grid>
+            <ProgressBar Value="{Binding SpotsLeftInverse, Mode=OneWay}" Name="pbSpacesLeft" Height="15" Margin="5" Maximum="{Binding SelectedWorkshop.Slots, Mode=OneWay}" />
+            <TextBlock Text="{Binding ElementName=pbSpacesLeft, Path=Value, StringFormat={}{0:0} Plaatsen gevuld}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
         </StackPanel>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="4" Grid.Column="0" Margin="5" Content="Workshop Details" Command="{Binding}" CommandParameter="WorkshopDetails" IsEnabled="{Binding DetailEnable}"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="4" Grid.Column="2" Margin="5" Content="Verwijder Workshop" Command="{Binding}" CommandParameter="DeleteWorkshop"  IsEnabled="{Binding DetailEnable}"/>
         <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="4" Grid.Column="3" Margin="5" Content="Nieuwe Workshop" Command="{Binding}" CommandParameter="AddWorkshop"/>
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="4" Grid.Column="4" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
         CommandParameter="{Binding ElementName=Workshops}" />

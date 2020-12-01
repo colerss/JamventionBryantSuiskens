@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace JamventionWPF.ViewModels
 {
-    public class WorkshopCreateViewModel : BasisViewModel
+    public class WorkshopCreateViewModel : BasisWorkshopViewModel
     {
         private Workshop _workshopCreate;
-        private ObservableCollection<Location> _locations;
-        private ObservableCollection<TimeSlot> _timeslots;
+
 
         public override string this[string columnName]
         {
@@ -26,16 +25,9 @@ namespace JamventionWPF.ViewModels
         public WorkshopCreateViewModel()
         {
             WorkshopCreate = new Workshop();
-            LoadComboboxes();
         }
 
-        public void LoadComboboxes()
-        {
-            IEnumerable<Location> locations = unitOfWork.RepoLocation.Retrieve();
-            IEnumerable<TimeSlot> timeSlots = unitOfWork.RepoTimeslot.Retrieve();
-            Locations = new ObservableCollection<Location>(locations);
-            Timeslots = new ObservableCollection<TimeSlot>(timeSlots);
-        }
+      
 
 
 
@@ -52,30 +44,7 @@ namespace JamventionWPF.ViewModels
             }
         }
 
-        public ObservableCollection<Location> Locations
-        {
-            get
-            {
-                return _locations;
-            }
-            set
-            {
-                _locations = value;
-                NotifyPropertyChanged();
-            }
-        }
-        public ObservableCollection<TimeSlot> Timeslots
-        {
-            get
-            {
-                return _timeslots;
-            }
-            set
-            {
-                _timeslots = value;
-                NotifyPropertyChanged();
-            }
-        }
+       
         #region ICommand
         public override bool CanExecute(object parameter)
         {

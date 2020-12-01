@@ -104,8 +104,9 @@
     <Compile Include="ViewModels\Dialog View Models\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
     <Compile Include="ViewModels\Dialog View Models\WorkshopCreateViewModel.cs" />
-    <Compile Include="Views\ParticipantCreateInvoice.xaml.cs">
-      <DependentUpon>ParticipantCreateInvoice.xaml</DependentUpon>
+    <Compile Include="ViewModels\Detail View Models\WorkshopDetailViewModel.cs" />
+    <Compile Include="Views\ParticipantCreateInvoiceView.xaml.cs">
+      <DependentUpon>ParticipantCreateInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ParticipantDetailView.xaml.cs">
       <DependentUpon>ParticipantDetailView.xaml</DependentUpon>
@@ -125,7 +126,10 @@
     <Compile Include="Views\WorkshopCreateView.xaml.cs">
       <DependentUpon>WorkshopCreateView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\ParticipantCreateInvoice.xaml">
+    <Compile Include="Views\WorkshopDetailsView.xaml.cs">
+      <DependentUpon>WorkshopDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ParticipantCreateInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WorkshopCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkshopDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

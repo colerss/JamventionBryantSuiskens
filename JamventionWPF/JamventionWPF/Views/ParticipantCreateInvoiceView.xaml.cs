@@ -17,9 +17,9 @@ namespace JamventionWPF.Views
     /// <summary>
     /// Interaction logic for ParticipantCreateInvoice.xaml
     /// </summary>
-    public partial class ParticipantCreateInvoice : Window
+    public partial class ParticipantCreateInvoiceView : Window
     {
-        public ParticipantCreateInvoice()
+        public ParticipantCreateInvoiceView()
         {
             InitializeComponent();
         }

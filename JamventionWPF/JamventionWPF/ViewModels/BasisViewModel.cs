@@ -145,5 +145,47 @@ namespace JamventionWPF.ViewModels
             }
         }
     }
+
+    public abstract class BasisWorkshopViewModel : BasisViewModel
+    {
+        private ObservableCollection<Location> _locations;
+        private ObservableCollection<TimeSlot> _timeslots;
+        public ObservableCollection<Location> Locations
+        {
+            get
+            {
+                return _locations;
+            }
+            set
+            {
+                _locations = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<TimeSlot> Timeslots
+        {
+            get
+            {
+                return _timeslots;
+            }
+            set
+            {
+                _timeslots = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public BasisWorkshopViewModel()
+        {
+            LoadComboboxes();
+
+        }
+        public void LoadComboboxes()
+        {
+            IEnumerable<Location> locations = unitOfWork.RepoLocation.Retrieve();
+            IEnumerable<TimeSlot> timeSlots = unitOfWork.RepoTimeslot.Retrieve();
+            Locations = new ObservableCollection<Location>(locations);
+            Timeslots = new ObservableCollection<TimeSlot>(timeSlots);
+        }
+    }
 }
 

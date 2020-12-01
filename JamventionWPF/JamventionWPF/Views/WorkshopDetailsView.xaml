@@ -1,0 +1,64 @@
+﻿<Window x:Class="JamventionWPF.Views.WorkshopDetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JamventionWPF.Views"
+        mc:Ignorable="d"
+         x:Name="WorkshopDetails"
+        Background="Gray"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="ParticipantDetailView" Height="325" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition  Height="1.8*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.RowSpan="2">
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopDetails.Name, ValidatesOnDataErrors=True}"  />
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Plekken" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopDetails.Slots, ValidatesOnDataErrors=True}"  />
+            <ComboBox Background="White" Margin="5" ItemsSource="{Binding Timeslots}"  SelectedValue="{Binding WorkshopDetails.TimeSlotID}" SelectedValuePath="TimeSlotID" DisplayMemberPath="DayFullTime" materialDesign:HintAssist.Hint="Tijdslot" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            <ComboBox Background="White" Margin="5" ItemsSource="{Binding Locations}"  SelectedValue="{Binding WorkshopDetails.LocationID}" SelectedValuePath="LocationID" DisplayMemberPath="LocationName" materialDesign:HintAssist.Hint="Locatie" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            </ComboBox>
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Docent" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopDetails.MainTeacher.FullName}" IsReadOnly="True" />
+
+        </StackPanel>
+        <TabControl Margin="5" Grid.Column="1" Grid.RowSpan="2">
+            <TabItem Header="Deelnemer Toevoegen">
+                <StackPanel>
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllParticipants}"  SelectedValue="{Binding ParticipantToAdd.GuestID}" SelectedValuePath="WorkshopParticipantID" DisplayMemberPath="Guest.Name" materialDesign:HintAssist.Hint="Deelnemer" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer toevoegen" Command="{Binding}" CommandParameter="SaveParticipant"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Deelnemers Leegmaken"  Command="{Binding}"  CommandParameter="ParticipantWipe"  />
+
+                </StackPanel>
+            </TabItem>
+            <TabItem  Header="Model Toevoegen">
+                <StackPanel>
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllModels}"  SelectedValue="{Binding ModelToAdd.ModelID}" SelectedValuePath="WorkshopModelID" DisplayMemberPath="Model.Name" materialDesign:HintAssist.Hint="Model" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Model toevoegen" Command="{Binding}" CommandParameter="SaveModel"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Modellen Leegmaken"  Command="{Binding}"  CommandParameter="ModellenWipe"  />
+                </StackPanel>
+            </TabItem>
+            <TabItem  Header="Docent Toevoegen">
+                <StackPanel>
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllTeachers}"  SelectedValue="{Binding TeacherToAdd.TeacherID}" SelectedValuePath="WorkshopTeacherID" DisplayMemberPath="Teacher.Name" materialDesign:HintAssist.Hint="Docent" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Docent toevoegen" Command="{Binding}" CommandParameter="SaveParticipant"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Docenten Leegmaken"  Command="{Binding}"  CommandParameter="TeacherWipe"  />
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Veranderingen Opslaan" Command="{Binding}" CommandParameter="SaveAll"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Terug"  Command="{Binding CloseWindowCommand, Mode=OneWay}"  CommandParameter="{Binding ElementName=WorkshopDetails}"  />
+        
+    </Grid>
+</Window>
