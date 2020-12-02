@@ -20,6 +20,9 @@ namespace JamventionDAL.Data.UnitOfWork
         private IRepository<TicketType> _repoTicketType;
         private IRepository<Payment> _repoPayment;
         private IRepository<Workshop> _repoWorkshop;
+        private IRepository<WorkshopParticipant> _repoWorkshopParticipant;
+        private IRepository<WorkshopModel> _repoWorkshopModel;
+        private IRepository<WorkshopTeacher> _repoWorkshopTeacher;
         private IRepository<Location> _repoLocation;
         private IRepository<TimeSlot> _repoTimeslot;
         public UnitOfWork(JamventionEntities jamventionEntities)
@@ -176,6 +179,40 @@ namespace JamventionDAL.Data.UnitOfWork
                 return _repoTimeslot;
             }
         }
+        public IRepository<WorkshopTeacher> RepoWorkshopTeacher
+        {
+            get
+            {
+                if (_repoWorkshopTeacher == null)
+                {
+                    _repoWorkshopTeacher = new Repository<WorkshopTeacher>(this.JamventionEntities);
+                }
+                return _repoWorkshopTeacher;
+            }
+        }
+        public IRepository<WorkshopParticipant> RepoWorkshopParticipant
+        {
+            get
+            {
+                if (_repoWorkshopParticipant == null)
+                {
+                    _repoWorkshopParticipant = new Repository<WorkshopParticipant>(this.JamventionEntities);
+                }
+                return _repoWorkshopParticipant;
+            }
+        }
+        public IRepository<WorkshopModel> RepoWorkshopModel
+        {
+            get
+            {
+                if (_repoWorkshopModel == null)
+                {
+                    _repoWorkshopModel = new Repository<WorkshopModel>(this.JamventionEntities);
+                }
+                return _repoWorkshopModel;
+            }
+        }
+
 
         public void Dispose()
         {

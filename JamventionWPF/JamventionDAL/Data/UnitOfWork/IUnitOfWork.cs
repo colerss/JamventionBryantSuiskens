@@ -22,6 +22,9 @@ namespace JamventionDAL.Data.UnitOfWork
         IRepository<Workshop> RepoWorkshop { get; }
         IRepository<Location> RepoLocation { get; }
         IRepository<TimeSlot> RepoTimeslot { get; }
+        IRepository<WorkshopTeacher> RepoWorkshopTeacher { get; }
+        IRepository<WorkshopParticipant> RepoWorkshopParticipant { get; }
+        IRepository<WorkshopModel> RepoWorkshopModel { get; }
         int Save();
     }
 }

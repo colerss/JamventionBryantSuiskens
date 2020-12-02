@@ -179,7 +179,7 @@ namespace JamventionWPF.ViewModels
             LoadComboboxes();
 
         }
-        public void LoadComboboxes()
+        public virtual void LoadComboboxes()
         {
             IEnumerable<Location> locations = unitOfWork.RepoLocation.Retrieve();
             IEnumerable<TimeSlot> timeSlots = unitOfWork.RepoTimeslot.Retrieve();

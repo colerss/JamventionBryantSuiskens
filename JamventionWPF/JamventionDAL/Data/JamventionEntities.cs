@@ -30,8 +30,9 @@ namespace JamventionDAL
         public DbSet<Workshop> Workshops { get; set; }
         public DbSet<WorkshopModel> WorkshopModels { get; set; }
         public DbSet<WorkshopParticipant> WorkshopParticipants { get; set; }
+        public DbSet<WorkshopTeacher> WorkshopTeachers { get; set; }
 
 
-       
+
     }
 }

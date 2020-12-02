@@ -32,27 +32,27 @@
         <TabControl Margin="5" Grid.Column="1" Grid.RowSpan="2">
             <TabItem Header="Deelnemer Toevoegen">
                 <StackPanel>
-                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllParticipants}"  SelectedValue="{Binding ParticipantToAdd.GuestID}" SelectedValuePath="WorkshopParticipantID" DisplayMemberPath="Guest.Name" materialDesign:HintAssist.Hint="Deelnemer" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllParticipants}"  SelectedValue="{Binding ParticipantToAdd.GuestID}" SelectedValuePath="GuestID" DisplayMemberPath="FullName" materialDesign:HintAssist.Hint="Deelnemer" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer toevoegen" Command="{Binding}" CommandParameter="SaveParticipant"/>
-                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Deelnemers Leegmaken"  Command="{Binding}"  CommandParameter="ParticipantWipe"  />
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Deelnemer toevoegen" Command="{Binding}" CommandParameter="SaveParticipant" IsEnabled="{Binding ParticipantsFull}"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Deelnemers Leegmaken"  Command="{Binding}"  CommandParameter="WipeParticipants" IsEnabled="{Binding ParticipantsEmpty}"  />
 
                 </StackPanel>
             </TabItem>
             <TabItem  Header="Model Toevoegen">
                 <StackPanel>
-                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllModels}"  SelectedValue="{Binding ModelToAdd.ModelID}" SelectedValuePath="WorkshopModelID" DisplayMemberPath="Model.Name" materialDesign:HintAssist.Hint="Model" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllModels}"  SelectedValue="{Binding ModelToAdd.ModelID}" SelectedValuePath="GuestID" DisplayMemberPath="FullName" materialDesign:HintAssist.Hint="Model" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Model toevoegen" Command="{Binding}" CommandParameter="SaveModel"/>
-                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Modellen Leegmaken"  Command="{Binding}"  CommandParameter="ModellenWipe"  />
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Model toevoegen" Command="{Binding}" CommandParameter="SaveModel" IsEnabled="{Binding ModelsFull}"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Modellen Leegmaken"  Command="{Binding}"  CommandParameter="WipeModels"  IsEnabled="{Binding ModelsEmpty}"/>
                 </StackPanel>
             </TabItem>
             <TabItem  Header="Docent Toevoegen">
                 <StackPanel>
-                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllTeachers}"  SelectedValue="{Binding TeacherToAdd.TeacherID}" SelectedValuePath="WorkshopTeacherID" DisplayMemberPath="Teacher.Name" materialDesign:HintAssist.Hint="Docent" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox Background="White" Margin="5" ItemsSource="{Binding AllTeachers}"  SelectedValue="{Binding TeacherToAdd.TeacherID}" SelectedValuePath="GuestID" DisplayMemberPath="FullName" materialDesign:HintAssist.Hint="Docent" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     </ComboBox>
-                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Docent toevoegen" Command="{Binding}" CommandParameter="SaveParticipant"/>
-                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Docenten Leegmaken"  Command="{Binding}"  CommandParameter="TeacherWipe"  />
+                    <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="3" Grid.Column="0" Margin="5" Content="Docent toevoegen" Command="{Binding}" CommandParameter="SaveTeacher" IsEnabled="{Binding TeachersFull}"/>
+                    <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="3" Grid.Column="1" Margin="5" Content="Docenten Leegmaken"  Command="{Binding}"  CommandParameter="WipeTeachers"   IsEnabled="{Binding TeachersEmpty}"/>
 
                 </StackPanel>
             </TabItem>

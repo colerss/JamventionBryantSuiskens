@@ -1,4 +1,5 @@
-﻿using JamventionDAL;
+﻿using GalaSoft.MvvmLight.Messaging;
+using JamventionDAL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,28 +19,98 @@ namespace JamventionWPF.ViewModels
         public WorkshopDetailViewModel(Workshop workshopDetails)
         {
             WorkshopDetails = workshopDetails;
+            SetProperties();
+            LoadComboboxes();
+        }
+        public void SetProperties ()
+        {
+            TeacherToAdd = new WorkshopTeacher
+            {
+                WorkshopID = WorkshopDetails.WorkshopID
+            };
+            ModelToAdd = new WorkshopModel
+            {
+                WorkshopID = WorkshopDetails.WorkshopID
+            };
+            ParticipantToAdd = new WorkshopParticipant
+            {
+                WorkshopID = WorkshopDetails.WorkshopID
+            };
         }
 
+        public override void LoadComboboxes()
+        {
+            IEnumerable<Guest> guests = unitOfWork.RepoGuests.Retrieve();
+            Guests = new ObservableCollection<Guest>(guests);
 
-        public ObservableCollection<Guest> Participants
+            base.LoadComboboxes();
+        }
+        #region Properties
+
+
+        public bool ParticipantsFull => WorkshopDetails.Slots > WorkshopDetails.WorkshopParticipants.Count();
+        public bool ModelsFull => 10 > WorkshopDetails.WorkshopModels.Count();
+        public bool TeachersFull => 2 > WorkshopDetails.WorkshopModels.Count();
+        public bool ParticipantsEmpty => 0 < WorkshopDetails.WorkshopParticipants.Count();
+        public bool ModelsEmpty => 0 < WorkshopDetails.WorkshopModels.Count();
+        public bool TeachersEmpty =>  0 < WorkshopDetails.WorkshopTeachers.Count();
+
+        public WorkshopModel ModelToAdd
         {
             get
             {
-                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 1));
+                return _modelToAdd;
+            }
+            set
+            {
+                _modelToAdd = value;
+                NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<Guest> Models
+        public WorkshopParticipant ParticipantToAdd
         {
             get
             {
-                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 2));
+                return _participantToAdd;
+            }
+            set
+            {
+                _participantToAdd = value;
+                NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<Guest> Teachers
+        public WorkshopTeacher TeacherToAdd
         {
             get
             {
-                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 3));
+                return _teacherToAdd;
+            }
+            set
+            {
+                _teacherToAdd = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Guest> AllParticipants
+        {
+            get
+            {
+                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 1).SkipWhile(x => WorkshopDetails.WorkshopParticipants.Any(f => f.GuestID == x.GuestID)));
+            }
+        }
+        public ObservableCollection<Guest> AllModels
+        {
+            get
+            {
+                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 2).SkipWhile(x => WorkshopDetails.WorkshopModels.Any(f => f.ModelID == x.GuestID)));
+            }
+        }
+        public ObservableCollection<Guest> AllTeachers
+        {
+            get
+            {
+                return new ObservableCollection<Guest>(Guests.Where(s => s.RoleID == 3).SkipWhile(x => WorkshopDetails.WorkshopTeachers.Any(f => f.TeacherID == x.GuestID)));
             }
         }
 
@@ -53,9 +124,7 @@ namespace JamventionWPF.ViewModels
             {
                 _guests = value;
                 NotifyPropertyChanged();
-                NotifyPropertyChanged("Teachers");
-                NotifyPropertyChanged("Models");
-                NotifyPropertyChanged("Participants");
+                PropertyStack();
             }
         }
 
@@ -69,8 +138,24 @@ namespace JamventionWPF.ViewModels
             {
                 _workshopDetails = value;
                 NotifyPropertyChanged();
+                PropertyStack();
             }
         }
+
+        public void PropertyStack()
+        {
+            NotifyPropertyChanged("AllTeachers");
+            NotifyPropertyChanged("AllModels");
+            NotifyPropertyChanged("AllParticipants");
+            NotifyPropertyChanged("ParticipantsFull");
+            NotifyPropertyChanged("TeachersFull");
+            NotifyPropertyChanged("ModelsFull");
+            NotifyPropertyChanged("ParticipantsEmpty");
+            NotifyPropertyChanged("TeachersEmpty");
+            NotifyPropertyChanged("ModelsEmpty");
+        }
+
+#endregion
         public override string this[string columnName]
         {
             get
@@ -88,9 +173,118 @@ namespace JamventionWPF.ViewModels
         {
             switch (parameter.ToString())
             {
-                default:
+                case "SaveAll":
+                    SaveAll();
+                        break;
+                case "SaveParticipant":
+                    SaveParticipant();
+                    break;
+                case "SaveModel":
+                    SaveModel();
+                    break;
+                case "SaveTeacher":
+                    SaveTeacher();
+                    break;
+                case "WipeParticipants":
+                   WipeParticipants();
+                    break;
+                case "WipeModels":
+                    WipeModels();
+                    break;
+                case "WipeTeachers":
+                    WipeTeachers();
                     break;
             }
+            //Roept alle afgeleide notifychanges aan omdat de meeste knoppen dit niet standaard doen
+            PropertyStack();
+            SetProperties();
         }
+        public void SaveAll()
+        {
+            unitOfWork.RepoWorkshop.AddOrEdit(WorkshopDetails);
+            unitOfWork.Save();
+        }
+
+        #region WipeFunction
+        public void WipeParticipants()
+        {
+            IEnumerable<WorkshopParticipant> workshopParticipants = unitOfWork.RepoWorkshopParticipant.Retrieve(x => x.WorkshopID == WorkshopDetails.WorkshopID);
+            if (workshopParticipants.Count() > 0)
+            {
+                unitOfWork.RepoWorkshopParticipant.DeleteRange(workshopParticipants);
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopParticipants.Clear();
+            }
+           
+        }
+        public void WipeTeachers()
+        {
+            IEnumerable<WorkshopTeacher> workshopTeachers = unitOfWork.RepoWorkshopTeacher.Retrieve(x => x.WorkshopID == WorkshopDetails.WorkshopID);
+            if (workshopTeachers.Count() > 0)
+            {
+                unitOfWork.RepoWorkshopTeacher.DeleteRange(workshopTeachers);
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopTeachers.Clear();
+            }
+        }
+        public void WipeModels()
+        {
+            IEnumerable<WorkshopModel> workshopModels = unitOfWork.RepoWorkshopModel.Retrieve(x => x.WorkshopID == WorkshopDetails.WorkshopID);
+            if (workshopModels.Count() > 0)
+            {
+                unitOfWork.RepoWorkshopModel.DeleteRange(workshopModels);
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopModels.Clear();
+            }
+        }
+        #endregion
+        #region SaveFunctions
+        public void SaveParticipant()
+        {
+            try
+            {
+                unitOfWork.RepoWorkshopParticipant.Add(ParticipantToAdd);
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopParticipants.Add(ParticipantToAdd);
+              
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(ex.Message);
+                ErrorLogging(ex);
+            }
+        }
+        public void SaveTeacher()
+        {
+            try
+            {
+                unitOfWork.RepoWorkshopTeacher.Add(TeacherToAdd);
+            
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopTeachers.Add(TeacherToAdd);
+               
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(ex.Message);
+                ErrorLogging(ex);
+            }
+        }
+        public void SaveModel()
+        {
+            try
+            {
+                unitOfWork.RepoWorkshopModel.Add(ModelToAdd);
+                unitOfWork.Save();
+                WorkshopDetails.WorkshopModels.Add(ModelToAdd);
+             
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(ex.Message);
+                ErrorLogging(ex);
+            }
+        }
+        #endregion
     }
 }

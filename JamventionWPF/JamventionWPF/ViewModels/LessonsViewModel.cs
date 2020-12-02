@@ -112,6 +112,8 @@ namespace JamventionWPF.ViewModels
             WorkshopDetailsView view = new WorkshopDetailsView();
             view.DataContext = viewModel;
             view.ShowDialog();
+            LoadDatagrid();
+            SelectedWorkshop = null;
         }
         void DeleteWorkshop() 
         {
