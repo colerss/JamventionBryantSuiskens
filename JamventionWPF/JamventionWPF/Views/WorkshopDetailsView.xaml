@@ -26,7 +26,7 @@
             </ComboBox>
             <ComboBox Background="White" Margin="5" ItemsSource="{Binding Locations}"  SelectedValue="{Binding WorkshopDetails.LocationID}" SelectedValuePath="LocationID" DisplayMemberPath="LocationName" materialDesign:HintAssist.Hint="Locatie" materialDesign:HintAssist.FloatingScale="1" materialDesign:HintAssist.FloatingOffset="0, -12" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
             </ComboBox>
-            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Docent" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopDetails.MainTeacher.FullName}" IsReadOnly="True" />
+            <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Docent" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding WorkshopDetails.MainTeacher.Teacher.FullName, Mode=OneWay}" IsReadOnly="True" />
 
         </StackPanel>
         <TabControl Margin="5" Grid.Column="1" Grid.RowSpan="2">

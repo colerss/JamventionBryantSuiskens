@@ -30,7 +30,7 @@
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
                         <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
-                        <DataGridTextColumn Header="Role" Binding="{Binding Path=GuestRole.RoleName}"/>
+                        <DataGridTextColumn Header="Role" Binding="{Binding Path=GuestRole.RoleName}"  Width="*"/>
                         <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
                     </DataGrid.Columns>
 
@@ -42,7 +42,7 @@
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
                         <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
-                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"  Width="*"/>
                         <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -53,7 +53,7 @@
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
                         <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
-                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"  Width="*"/>
                         <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -64,7 +64,7 @@
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
                         <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
-                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"  Width="*"/>
                         <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
                     </DataGrid.Columns>
 
@@ -76,7 +76,7 @@
                         <DataGridTextColumn Header="Naam" Binding="{Binding Path=LastName}"/>
                         <DataGridTextColumn Header="Voornaam" Binding="{Binding Path=FirstName}"/>
                         <DataGridTextColumn Header="Woonplaats" Binding="{Binding Path=Residence.City}"/>
-                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"/>
+                        <DataGridTextColumn Header="Nationaliteit" Binding="{Binding Path=Residence.Nationality.CountryName}"  Width="*"/>
                         <DataGridCheckBoxColumn Header="Vega?" Binding="{Binding Path=IsVegetarian}"/>
                     </DataGrid.Columns>
 

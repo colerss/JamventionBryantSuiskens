@@ -102,6 +102,7 @@
     <Compile Include="ViewModels\Detail View Models\ParticipantDetailViewModel.cs" />
     <Compile Include="ViewModels\Dialog View Models\ParticipantInvoiceViewModel.cs" />
     <Compile Include="ViewModels\Dialog View Models\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Dialog View Models\RoomCreateViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
     <Compile Include="ViewModels\Dialog View Models\WorkshopCreateViewModel.cs" />
     <Compile Include="ViewModels\Detail View Models\WorkshopDetailViewModel.cs" />

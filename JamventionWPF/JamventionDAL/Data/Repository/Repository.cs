@@ -70,6 +70,7 @@ namespace JamventionDAL.Data.Repository
         {
             return Context.Set<T>().Find(id);
         }
+ 
         public void AddOrEdit(T entity)
         {
             Context.Set<T>().AddOrUpdate(entity);
@@ -104,5 +105,7 @@ namespace JamventionDAL.Data.Repository
           
             
         }
+
+      
     }
 }

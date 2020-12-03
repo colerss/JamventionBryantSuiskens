@@ -8,6 +8,6 @@ namespace JamventionDAL
 {
     public partial class Workshop
     {
-        public WorkshopTeacher MainTeacher => WorkshopTeachers.SingleOrDefault();
+        public WorkshopTeacher MainTeacher => WorkshopTeachers.ToList().FirstOrDefault();
     }
 }

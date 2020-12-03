@@ -18,9 +18,11 @@ namespace JamventionWPF.ViewModels
         private ObservableCollection<Room> _rooms;
         private Invoice _invoice;
         private ObservableCollection<Payment> _payments;
+        private ObservableCollection<WorkshopParticipant> _workshopEntries;
+        private Guest importedGuest;
         public override void LoadComboboxes()
         {
-            IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count, x => x.RoomType);
+            IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count , x => x.RoomType);
             IEnumerable<Room> otherRooms = unitOfWork.RepoOtherRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count);
             List<Room> roomJoin = new List<Room>(localRooms);
             roomJoin.AddRange(otherRooms);
@@ -45,23 +47,43 @@ namespace JamventionWPF.ViewModels
         }
         public ParticipantDetailViewModel(Guest guest)
         {
+            importedGuest = guest;
             GuestDetails = guest;
-            ResidenceDetails = GuestDetails.Residence;
-            
-            if (GuestDetails.RoleID != 1)
-            {
-                GuestRoles = new ObservableCollection<GuestRole>(GuestRoles.Where(x => x.RoleID != 1));
-                return;
-            }
-            Invoice = GuestDetails.Invoice;
-            LoadDatagrid();
+            SetGuestInfo();
         }
         public void LoadDatagrid()
         {
             Payments = new ObservableCollection<Payment>(Invoice.Payments);
         }
+        public void SetGuestInfo()
+        {
+            ResidenceDetails = GuestDetails.Residence;
 
-      
+            if (GuestDetails.RoleID != 1)
+            {
+                GuestRoles = new ObservableCollection<GuestRole>(GuestRoles.Where(x => x.RoleID != 1));
+                return;
+            }
+            else
+            {
+           Invoice = GuestDetails.Invoice;
+            WorkshopEntries = new ObservableCollection<WorkshopParticipant>(GuestDetails.WorkshopParticipants);
+            LoadDatagrid();
+            }
+        }
+
+      public ObservableCollection<WorkshopParticipant> WorkshopEntries
+        {
+            get
+            {
+                return _workshopEntries;
+            }
+            set
+            {
+                _workshopEntries = value;
+                NotifyPropertyChanged();
+            }
+        }
         public override string this[string columnName]
         {
             get
@@ -139,14 +161,7 @@ namespace JamventionWPF.ViewModels
             switch (parameter.ToString())
             {
                 case "SaveAll":
-                    if (SaveChanges() > 0)
-                    {
-                        Messenger.Default.Send("Aanpassingen Opgeslagen");
-                    }
-                    else
-                    {
-                        Messenger.Default.Send("Geen aanpassingen doorgegeven");
-                    }
+                    SaveAll();
 
                     break;
                 case "AddPayment":
@@ -155,12 +170,27 @@ namespace JamventionWPF.ViewModels
 
             }
         }
+        public void SaveAll()
+        {
+            if (SaveChanges() > 0)
+            {
+                Messenger.Default.Send("Aanpassingen Opgeslagen");
+            }
+            else
+            {
+                Messenger.Default.Send("Geen aanpassingen doorgegeven");
+            }
+        }
         public void AddPayment()
         {
             PaymentViewModel vm = new PaymentViewModel(GuestDetails.Invoice);
             PaymentView view = new PaymentView();
             view.DataContext = vm;
             view.ShowDialog();
+            GuestDetails = unitOfWork.RepoGuests.Retrieve( x => x.GuestID == importedGuest.GuestID, x => x.Residence, x => x.GuestRole, x => x.Room, x => x.Residence.Nationality, x => x.Invoice, x => x.Invoice.TicketType, x => x.Invoice.Payments, x => x.WorkshopParticipants,
+                x => x.WorkshopParticipants.Select(c => c.Workshop),
+                x => x.WorkshopParticipants.Select(c => c.Workshop.TimeSlot)).FirstOrDefault();
+            SetGuestInfo();
         }
         public int SaveChanges()
         {

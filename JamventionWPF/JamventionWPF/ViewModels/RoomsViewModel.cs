@@ -1,5 +1,6 @@
 ﻿using JamventionDAL;
 using JamventionDAL.Data.UnitOfWork;
+using JamventionWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -114,9 +115,18 @@ namespace JamventionWPF.ViewModels
             switch (parameter.ToString())
             {
                 case "NewRoom":
+                    AddRoom();
                     break;
             }
         }
         #endregion
+        public void AddRoom()
+        {
+            RoomCreateViewModel vm = new RoomCreateViewModel();
+            RoomAddView view = new RoomAddView();
+            view.DataContext = vm;
+            view.ShowDialog();
+            LoadDatagrid();
+        }
     }
 }

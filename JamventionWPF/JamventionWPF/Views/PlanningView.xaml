@@ -32,7 +32,8 @@
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
                         <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"  Width="*"/>
+                        <DataGridTextColumn Header="Plekken" Binding="{Binding Path=Slots}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -42,7 +43,8 @@
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
                         <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"  Width="*"/>
+                        <DataGridTextColumn Header="Plekken" Binding="{Binding Path=Slots}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -52,21 +54,30 @@
                         <DataGridTextColumn Header="Workshop" Binding="{Binding Path=Name}"/>
                         <DataGridTextColumn Header="Docent" Binding="{Binding Path=MainTeacher.Teacher.FullName}"/>
                         <DataGridTextColumn Header="Tijdslot" Binding="{Binding Path=TimeSlot.FullTime}"/>
-                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"/>
+                        <DataGridTextColumn Header="Lesruimte" Binding="{Binding Path=Location.LocationName}"  Width="*"/>
+                        <DataGridTextColumn Header="Plekken" Binding="{Binding Path=Slots}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <DataGrid Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="1" ItemsSource="{Binding SelectedWorkshop.WorkshopParticipants}" AutoGenerateColumns="False"  IsReadOnly="True"  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Participant" Binding="{Binding Path=Guest.FullName, Mode=OneWay}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="2" ItemsSource="{Binding SelectedWorkshop.WorkshopModels}" AutoGenerateColumns="False"  IsReadOnly="True"  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Models" Binding="{Binding Path=Model.FullName, Mode=OneWay}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <TabControl  Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="0" Grid.RowSpan="3">
+            <TabItem Header="Deelnemers">
+                <DataGrid ItemsSource="{Binding SelectedWorkshop.WorkshopParticipants}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Participant" Binding="{Binding Path=Guest.FullName, Mode=OneWay}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Modellen">
+                <DataGrid Margin="5" Grid.Column="3" Grid.ColumnSpan="3"  Grid.Row="2" ItemsSource="{Binding SelectedWorkshop.WorkshopModels}" AutoGenerateColumns="False"  IsReadOnly="True"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Models" Binding="{Binding Path=Model.FullName, Mode=OneWay}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl >
+       
+        
         <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Margin="5">
             <Label FontSize="26">Plekken vrij in workshop:</Label>
             <Grid>

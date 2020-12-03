@@ -48,9 +48,10 @@ namespace JamventionWPF.ViewModels
         #region Properties
 
 
-        public bool ParticipantsFull => WorkshopDetails.Slots > WorkshopDetails.WorkshopParticipants.Count();
+        public bool ParticipantsFull => WorkshopDetails.Slots >WorkshopDetails.WorkshopParticipants.Count();
         public bool ModelsFull => 10 > WorkshopDetails.WorkshopModels.Count();
-        public bool TeachersFull => 2 > WorkshopDetails.WorkshopModels.Count();
+        //Principieel heeft elke workshop maar één docent, maar een hulpdocent of tweede docent mag aangegeven worden. Deze staat niet in de oppervlakkige data maar komt wel in de schemas van de hulpdocenten 
+        public bool TeachersFull => 3 > WorkshopDetails.WorkshopTeachers.Count();
         public bool ParticipantsEmpty => 0 < WorkshopDetails.WorkshopParticipants.Count();
         public bool ModelsEmpty => 0 < WorkshopDetails.WorkshopModels.Count();
         public bool TeachersEmpty =>  0 < WorkshopDetails.WorkshopTeachers.Count();

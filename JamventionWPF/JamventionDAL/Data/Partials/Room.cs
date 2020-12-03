@@ -9,7 +9,22 @@ namespace JamventionDAL
 {
     public partial class Room
     {
-       
+        [NotMapped]
+        public int BedsFilled
+        {
+            get
+            {
+                return RoomOccupancy.Count();
+            }
+        }
+        [NotMapped]
+        public bool BedsFull
+        {
+            get
+            {
+                return BedsFilled == Beds;
+            }
+        }
     }
     public partial class LocalRoom
     {
