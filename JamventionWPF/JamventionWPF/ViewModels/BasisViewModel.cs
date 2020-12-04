@@ -25,8 +25,17 @@ namespace JamventionWPF.ViewModels
         {
             this.CloseWindowCommand = new RelayCommand<Window>(this.CloseWindow);
         }
-      
-       
+
+        public RelayCommand<Window> CloseWindowCommand { get; private set; }
+
+
+        private void CloseWindow(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
         #endregion
         public static void ErrorLogging(Exception ex)
         {
@@ -57,16 +66,7 @@ namespace JamventionWPF.ViewModels
         public abstract string this[string columnName] { get; }
        
 
-        public RelayCommand<Window> CloseWindowCommand { get; private set; }
-
-
-        private void CloseWindow(Window window)
-        {
-            if (window != null)
-            {
-                window.Close();
-            }
-        }
+      
 
         public bool isGeldig()
         {
