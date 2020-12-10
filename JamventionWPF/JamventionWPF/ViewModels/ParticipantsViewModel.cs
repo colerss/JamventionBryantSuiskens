@@ -10,6 +10,7 @@ using JamventionWPF.Views;
 using JamventionDAL;
 using GalaSoft.MvvmLight.Messaging;
 using JamventionDAL.Data.UnitOfWork;
+using System.Text.RegularExpressions;
 
 namespace JamventionWPF.ViewModels
 {
@@ -124,12 +125,62 @@ namespace JamventionWPF.ViewModels
                 x => x.WorkshopParticipants.Select(c => c.Workshop.TimeSlot)) ;
             Guests = new ObservableCollection<Guest>(guests);
         }
-
         public override string this[string columnName]
         {
             get
             {
-                return "";
+                string result = "";
+
+                switch (columnName)
+                {
+                    case "FirstName":
+                        if (string.IsNullOrWhiteSpace(GuestCreate.FirstName))
+                        {
+                           result = "voornaam mag niet leeg zijn";
+                        }
+
+                        break;
+                    case "LastName":
+                        if (string.IsNullOrWhiteSpace(GuestCreate.LastName))
+                        {
+                            result = "Achternaam mag niet leeg zijn";
+                        }
+
+                        break;
+                    case "EmailAddress":
+                        Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+                        if (string.IsNullOrWhiteSpace(GuestCreate.EmailAddress))
+                        {
+                            result = "Email Address mag niet leeg zijn";
+                        }
+                        else if (!regex.IsMatch(GuestCreate.EmailAddress))
+                        {
+                            result =  "Email Address moet een geldig formaat hebben";
+                        }
+
+                        break;
+                    case "PostalCode":
+                        if (string.IsNullOrWhiteSpace(ResidenceCreate.PostalCode))
+                        {
+                            result = "Postcode mag niet leeg zijn" ;
+                        }
+
+                        break;
+                    case "City":
+                        if (string.IsNullOrWhiteSpace(ResidenceCreate.City))
+                        {
+                            result = "Stad mag niet leeg zijn";
+                        }
+                        break;
+                    case "Address":
+                        if (string.IsNullOrWhiteSpace(ResidenceCreate.Address))
+                        {
+                            result = "Address mag niet leeg zijn";
+                        }
+                        break;
+
+                }
+                return result;
             }
         }
         #region ICommand
