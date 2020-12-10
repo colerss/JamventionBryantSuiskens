@@ -25,6 +25,7 @@ namespace JamventionDAL.Data.UnitOfWork
         IRepository<WorkshopTeacher> RepoWorkshopTeacher { get; }
         IRepository<WorkshopParticipant> RepoWorkshopParticipant { get; }
         IRepository<WorkshopModel> RepoWorkshopModel { get; }
+        IRepository<AdminKeys> RepoAdminKeys { get; }
         int Save();
     }
 }

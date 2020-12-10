@@ -18,8 +18,8 @@ namespace JamventionWPF
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Messenger.Default.Register<string>(this, ShowMessage);
-            ParticipantsViewModel viewModel = new ParticipantsViewModel();
-            Views.ParticipantsView view = new Views.ParticipantsView();
+            LoginViewModel viewModel = new LoginViewModel();
+            Views.LoginView view = new Views.LoginView();
             view.DataContext = viewModel;
             view.Show();
         }

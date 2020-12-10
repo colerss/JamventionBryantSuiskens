@@ -186,6 +186,19 @@ namespace JamventionWPF.ViewModels
         #region ICommand
         public override bool CanExecute(object parameter)
         {
+            switch (parameter.ToString())
+            {
+                case "Rooms":
+                    return true;
+                case "Lessons":
+                    return true;
+                case "Details":
+                    return true;
+                case "CreateGuest":
+                    return LoginViewModel.IsAuthorized ;
+                case "Delete":
+                    return LoginViewModel.IsAuthorized;
+            }
             return true;
         }
        

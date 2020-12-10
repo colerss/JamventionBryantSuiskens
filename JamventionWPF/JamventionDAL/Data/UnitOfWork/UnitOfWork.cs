@@ -24,6 +24,7 @@ namespace JamventionDAL.Data.UnitOfWork
         private IRepository<WorkshopModel> _repoWorkshopModel;
         private IRepository<WorkshopTeacher> _repoWorkshopTeacher;
         private IRepository<Location> _repoLocation;
+        private IRepository<AdminKeys> _repoAdminKeys;
         private IRepository<TimeSlot> _repoTimeslot;
         public UnitOfWork(JamventionEntities jamventionEntities)
         {
@@ -212,7 +213,17 @@ namespace JamventionDAL.Data.UnitOfWork
                 return _repoWorkshopModel;
             }
         }
-
+        public IRepository<AdminKeys> RepoAdminKeys
+        {
+            get
+            {
+                if (_repoAdminKeys == null)
+                {
+                    _repoAdminKeys = new Repository<AdminKeys>(this.JamventionEntities);
+                }
+                return _repoAdminKeys;
+            }
+        }
 
         public void Dispose()
         {

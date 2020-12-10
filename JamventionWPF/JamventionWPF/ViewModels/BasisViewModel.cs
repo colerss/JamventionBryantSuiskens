@@ -18,7 +18,7 @@ namespace JamventionWPF.ViewModels
 {
     public abstract class BasisViewModel : INotifyPropertyChanged, ICommand, IDataErrorInfo
     {
-        public static bool IsAuthorized;
+  
         protected IUnitOfWork unitOfWork = new UnitOfWork(new JamventionDAL.JamventionEntities());
        
         #region Startup routine

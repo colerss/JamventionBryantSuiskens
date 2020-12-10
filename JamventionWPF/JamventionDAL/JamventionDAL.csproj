@@ -85,7 +85,12 @@
     <Compile Include="Migrations\202011301526460_typofix2.designer.cs">
       <DependentUpon>202011301526460_typofix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012101254331_AdminKeys.cs" />
+    <Compile Include="Migrations\202012101254331_AdminKeys.designer.cs">
+      <DependentUpon>202012101254331_AdminKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdminKeys.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\GuestRole.cs" />
@@ -119,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011301526460_typofix2.resx">
       <DependentUpon>202011301526460_typofix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012101254331_AdminKeys.resx">
+      <DependentUpon>202012101254331_AdminKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

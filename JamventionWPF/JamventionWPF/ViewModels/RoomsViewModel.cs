@@ -107,6 +107,11 @@ namespace JamventionWPF.ViewModels
         #region ICommand
         public override bool CanExecute(object parameter)
         {
+            switch (parameter.ToString())
+            {
+                case "NewRoom":
+                    return LoginViewModel.IsAuthorized;
+            }
             return true;
         }
 

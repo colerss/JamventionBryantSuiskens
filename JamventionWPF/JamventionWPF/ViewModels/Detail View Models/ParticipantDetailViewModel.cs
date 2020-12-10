@@ -153,6 +153,14 @@ namespace JamventionWPF.ViewModels
         }
         public override bool CanExecute(object parameter)
         {
+            switch (parameter.ToString())
+            {
+                case "SaveAll":
+                    return LoginViewModel.IsAuthorized;
+                case "AddPayment":
+                    return LoginViewModel.IsAuthorized;
+
+            }
             return true;
         }
 
