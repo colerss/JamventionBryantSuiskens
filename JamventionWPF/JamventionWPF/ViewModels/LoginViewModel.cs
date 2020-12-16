@@ -12,7 +12,7 @@ namespace JamventionWPF.ViewModels
    public class LoginViewModel : BasisViewModel
     {
         public static bool IsAuthorized = false;
-
+      
         public override string this[string columnName]
         {
             get
@@ -44,19 +44,23 @@ namespace JamventionWPF.ViewModels
             }
             else
             {
-                var passwordBox = parameter as PasswordBox;
-                var password = passwordBox.Password;
-                
-                IEnumerable<AdminKeys> adminKeys = unitOfWork.RepoAdminKeys.Retrieve();
-                if (adminKeys.Any(x => x.HashedPassword == password.GetHashCode().ToString()))
-                {
-                    IsAuthorized = true;
-                    Messenger.Default.Send("Administratormode geactiveerd");
-                }
-                else
-                {
-                    Messenger.Default.Send("Ongeldige Administrator sleutel");
-                }
+              ValidateAdminKey(parameter as PasswordBox);
+            }
+        }
+
+        public async void ValidateAdminKey(PasswordBox passwordBox)
+        {
+            var password = passwordBox.Password;
+
+            IEnumerable<AdminKeys> adminKeys = await unitOfWork.RepoAdminKeys.RetrieveAsync();
+            if (adminKeys.Any(x => x.HashedPassword == password.GetHashCode().ToString()))
+            {
+                IsAuthorized = true;
+                Messenger.Default.Send("Administratormode geactiveerd");
+            }
+            else
+            {
+                Messenger.Default.Send("Ongeldige Administrator sleutel");
             }
         }
     }

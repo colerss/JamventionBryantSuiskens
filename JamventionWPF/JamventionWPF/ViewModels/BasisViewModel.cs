@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,7 +79,7 @@ namespace JamventionWPF.ViewModels
             get
             {
                 string foutmeldingen = "";
-                foreach (var item in this.GetType().GetProperties())
+                foreach (var item in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
                 {
                     string fout = this[item.Name];
                     if (!string.IsNullOrWhiteSpace(fout))

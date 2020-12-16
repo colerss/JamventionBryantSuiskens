@@ -21,6 +21,11 @@ namespace JamventionDAL.Data.Repository
         {
             return Context.Set<T>().ToList();
         }
+        public async Task<IEnumerable<T>> RetrieveAsync()
+        {
+          return await Context.Set<T>().ToListAsync();
+
+        }
         public void Add(T entity)
         {
             Context.Set<T>().Add(entity);

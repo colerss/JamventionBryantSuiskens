@@ -11,6 +11,7 @@ namespace JamventionDAL.Data.Repository
         where T : class, new()
     {
         IEnumerable<T> Retrieve();
+        Task<IEnumerable<T>> RetrieveAsync();
         void Add(T entity);
         void Edit(T entity);
         void Delete(T entity);
