@@ -122,8 +122,13 @@ namespace JamventionWPF.ViewModels
             }
         }
 
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
+            if (parameter.ToString() == "AddGuest")
+            {
+                return InvoiceCreate.IsGeldig();
+            }
             return true;
         }
 
@@ -144,6 +149,7 @@ namespace JamventionWPF.ViewModels
                     break;
             }
         }
+        #endregion
         public int SaveGuest()
         {
             if (!WeekendTicket)

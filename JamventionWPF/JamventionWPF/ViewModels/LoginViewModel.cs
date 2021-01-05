@@ -21,6 +21,7 @@ namespace JamventionWPF.ViewModels
             }
         }
 
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
             if (parameter.ToString() == "Continue")
@@ -47,7 +48,7 @@ namespace JamventionWPF.ViewModels
               ValidateAdminKey(parameter as PasswordBox);
             }
         }
-
+        #endregion
         public async void ValidateAdminKey(PasswordBox passwordBox)
         {
             var password = passwordBox.Password;

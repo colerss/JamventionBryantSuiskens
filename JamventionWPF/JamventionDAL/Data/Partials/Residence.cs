@@ -6,34 +6,31 @@ using System.Threading.Tasks;
 
 namespace JamventionDAL
 {
-    public partial class Workshop : BasisModel
+    public partial class Residence : BasisModel
     {
-
         public override string this[string columnName]
         {
             get
             {
                 string error = "";
-                if (columnName == "Slots")
+                if (columnName == "Address")
                 {
-                    if (Slots < 1)
+                    if (string.IsNullOrWhiteSpace(Address))
                     {
-                        error += "Slots mag niet 0 zijn";
+                        error += "address mag niet leeg zijn";
                     }
-                   
                 }
-                if (columnName == "Name")
+                if (columnName == "City")
                 {
-                    if (string.IsNullOrWhiteSpace(Name))
+                    if (string.IsNullOrWhiteSpace(City))
                     {
-                        error += "Naam mag niet leeg zijn";
+                        error += "Stad mag niet leeg zijn";
                     }
+                }
 
-                }
                 return error;
             }
 
         }
-        public WorkshopTeacher MainTeacher => WorkshopTeachers.ToList().FirstOrDefault();
     }
 }

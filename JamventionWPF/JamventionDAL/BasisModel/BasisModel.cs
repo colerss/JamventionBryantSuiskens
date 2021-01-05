@@ -52,16 +52,13 @@ namespace JamventionDAL
             get
             {
                 string foutmeldingen = "";
-
-                foreach (var item in this.GetType().GetProperties(BindingFlags.DeclaredOnly)) //reflection 
+                foreach (var item in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
                 {
-
                     string fout = this[item.Name];
                     if (!string.IsNullOrWhiteSpace(fout))
                     {
                         foutmeldingen += fout + Environment.NewLine;
                     }
-
                 }
                 return foutmeldingen;
             }

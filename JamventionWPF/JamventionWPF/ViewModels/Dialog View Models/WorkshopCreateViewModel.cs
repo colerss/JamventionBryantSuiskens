@@ -48,6 +48,10 @@ namespace JamventionWPF.ViewModels
         #region ICommand
         public override bool CanExecute(object parameter)
         {
+            if (parameter.ToString() == "AddWorkshop")
+            {
+                return WorkshopCreate.IsGeldig();
+            }
             return true;
         }
 

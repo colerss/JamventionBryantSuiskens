@@ -31,6 +31,7 @@ namespace JamventionDAL.Data.Repository
         void Delete<TPrimaryKey>(TPrimaryKey id);
         void DeleteRange(IEnumerable<T> entities);
 
+        //Handig wanneer je niet automatisch een PK wilt doorgeven
         int GetMaxPK(Func<T, int> columnSelector);
 
 

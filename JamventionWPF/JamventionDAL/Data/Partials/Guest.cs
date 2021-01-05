@@ -16,15 +16,40 @@ namespace JamventionDAL
             {
 
                 string error = "";
-                if (columnName == "EmailAddress")
+                if (columnName == "EmailAddress" && EmailAddress != null)
                 {
                     Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
                     if (!regex.IsMatch(EmailAddress))
                     {
                         error += "Email addresss is een foutief formaat!\n";
                     }
+                    if (string.IsNullOrWhiteSpace(EmailAddress))
+                    {
+                        error += "Emailaddress mag niet leeg zijn";
+                    }
                    
                 };
+                if (columnName == "FirstName" && FirstName != null)
+                {
+                    if (string.IsNullOrWhiteSpace(FirstName))
+                    {
+                        error += "Voornaam mag niet leeg zijn";
+                    }
+                }
+                if (columnName == "LastName" && LastName != null)
+                {
+                    if (string.IsNullOrWhiteSpace(LastName))
+                    {
+                        error += "achternaam mag niet leeg zijn";
+                    }
+                }
+                if (columnName == "TelephoneNr" && TelephoneNr != null)
+                {
+                    if (string.IsNullOrWhiteSpace(TelephoneNr))
+                    {
+                        error += "telefoonnummer mag niet leeg zijn";
+                    }
+                }
                 return error;
             }
         }

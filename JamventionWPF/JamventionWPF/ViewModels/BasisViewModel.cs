@@ -29,7 +29,7 @@ namespace JamventionWPF.ViewModels
         }
 
         public RelayCommand<Window> CloseWindowCommand { get; private set; }
-
+        //MVVM Light implementatie, laat toe om windows te sluiten terwijl we conform aan MVVM werken
 
         private void CloseWindow(Window window)
         {
@@ -41,6 +41,7 @@ namespace JamventionWPF.ViewModels
         #endregion
         public static void ErrorLogging(Exception ex)
         {
+            //Maakt het mogelijk alle exceptions te loggen om te debuggen
             string strPath = @"Log.txt";
             if (!File.Exists(strPath))
             {
@@ -65,10 +66,9 @@ namespace JamventionWPF.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public abstract string this[string columnName] { get; }
-       
 
-      
+        #region IDataErrorInfo
+        public abstract string this[string columnName] { get; }
 
         public bool isGeldig()
         {
@@ -79,7 +79,7 @@ namespace JamventionWPF.ViewModels
             get
             {
                 string foutmeldingen = "";
-                foreach (var item in this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
+                foreach (var item in this.GetType().GetProperties(BindingFlags.Instance))
                 {
                     string fout = this[item.Name];
                     if (!string.IsNullOrWhiteSpace(fout))
@@ -91,7 +91,7 @@ namespace JamventionWPF.ViewModels
             }
         }
 
-
+        #endregion
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }

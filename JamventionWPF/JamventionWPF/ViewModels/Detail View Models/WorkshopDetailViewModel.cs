@@ -16,6 +16,8 @@ namespace JamventionWPF.ViewModels
         private WorkshopParticipant _participantToAdd;
         private WorkshopTeacher _teacherToAdd;
         private ObservableCollection<Guest> _guests;
+
+        #region Startup Routine
         public WorkshopDetailViewModel(Workshop workshopDetails)
         {
             WorkshopDetails = workshopDetails;
@@ -45,12 +47,13 @@ namespace JamventionWPF.ViewModels
 
             base.LoadComboboxes();
         }
+        #endregion
         #region Properties
 
 
         public bool ParticipantsFull => WorkshopDetails.Slots >WorkshopDetails.WorkshopParticipants.Count();
         public bool ModelsFull => 10 > WorkshopDetails.WorkshopModels.Count();
-        //Principieel heeft elke workshop maar één docent, maar een hulpdocent of tweede docent mag aangegeven worden. Deze staat niet in de oppervlakkige data maar komt wel in de schemas van de hulpdocenten 
+        //Principieel heeft elke workshop maar één docent, maar een hulpdocent of tweede docent mag aangegeven worden. Deze staat niet in de oppervlakkige data maar komt wel in de tijdschemas van de hulpdocenten 
         public bool TeachersFull => 3 > WorkshopDetails.WorkshopTeachers.Count();
         public bool ParticipantsEmpty => 0 < WorkshopDetails.WorkshopParticipants.Count();
         public bool ModelsEmpty => 0 < WorkshopDetails.WorkshopModels.Count();
@@ -165,6 +168,7 @@ namespace JamventionWPF.ViewModels
             }
         }
 
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
             switch (parameter.ToString())
@@ -217,13 +221,14 @@ namespace JamventionWPF.ViewModels
             PropertyStack();
             SetProperties();
         }
+        #endregion
         public void SaveAll()
         {
             unitOfWork.RepoWorkshop.AddOrEdit(WorkshopDetails);
             unitOfWork.Save();
         }
 
-        #region WipeFunction
+        #region WipeFunctions
         public void WipeParticipants()
         {
             IEnumerable<WorkshopParticipant> workshopParticipants = unitOfWork.RepoWorkshopParticipant.Retrieve(x => x.WorkshopID == WorkshopDetails.WorkshopID);

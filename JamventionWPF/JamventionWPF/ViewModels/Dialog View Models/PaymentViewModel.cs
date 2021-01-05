@@ -17,6 +17,8 @@ namespace JamventionWPF.ViewModels
             Invoice = invoice;
             Payment = new Payment();
         }
+
+        #region Properties
         public Payment Payment
         {
             get
@@ -42,7 +44,7 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
+        #endregion
         public decimal Subtotal()
         {
             decimal subtotal = 0;
@@ -52,10 +54,21 @@ namespace JamventionWPF.ViewModels
             }
             return (Invoice.TicketType.TicketPrice - subtotal);
         }
-        public override string this[string columnName] => throw new NotImplementedException();
+        public override string this[string columnName]
+        {
+            get
+            {
+                return "";
+            }
+        }
 
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
+            if (parameter.ToString() == "AddPayment")
+            {
+                return Payment.Amount > 0;
+            }
             return true;
         }
 
@@ -87,5 +100,6 @@ namespace JamventionWPF.ViewModels
                     break;
             }
         }
+        #endregion
     }
 }

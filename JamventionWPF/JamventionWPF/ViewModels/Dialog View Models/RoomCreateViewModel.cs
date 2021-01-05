@@ -37,8 +37,13 @@ namespace JamventionWPF.ViewModels
             }
         }
 
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
+            if (parameter.ToString() == "AddRoom")
+            {
+                return RoomCreate.IsGeldig(); 
+            }
             return true;
         }
 
@@ -49,19 +54,28 @@ namespace JamventionWPF.ViewModels
                 AddRoom();
             }
         }
-
+        #endregion
         public void AddRoom()
         {
             unitOfWork.RepoOtherRooms.Add(RoomCreate);
-            if (unitOfWork.Save() > 0)
+            try
             {
-                Messenger.Default.Send("Nieuwe kamer successvol toegevoegd");
-                RoomCreate = new OtherRoom();
+                if (unitOfWork.Save() > 0)
+                {
+                    Messenger.Default.Send("Nieuwe kamer successvol toegevoegd");
+                    RoomCreate = new OtherRoom();
+                }
+                else
+                {
+                    Messenger.Default.Send("Toevoeging gefaald ");
+                }
             }
-            else
+            catch (Exception err)
             {
-                Messenger.Default.Send("Toevoeging gefaald ");
+
+                Messenger.Default.Send(err.Message);
             }
+           
 
         }
     }

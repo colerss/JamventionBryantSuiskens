@@ -22,7 +22,7 @@
             <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding RoomCreate.RoomDescription, ValidatesOnDataErrors=True}"  />
             <TextBox Background="White" Margin="5" materialDesign:HintAssist.Hint="Bedden" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding RoomCreate.Beds, ValidatesOnDataErrors=True}"  />
         </StackPanel>
-        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="0" Margin="5" Content="Toevoegen" Command="{Binding}" CommandParameter="AddRoom"/>
+        <Button  Style="{StaticResource MaterialDesignRaisedDarkButton}" Grid.Row="1" Grid.Column="0" Margin="5" Content="Toevoegen" Command="{Binding}" CommandParameter="AddRoom" />
         <Button  Style="{StaticResource MaterialDesignRaisedAccentButton}" Grid.Row="1" Grid.Column="1" Margin="5" Content="Terug" Command="{Binding CloseWindowCommand, Mode=OneWay}" 
         CommandParameter="{Binding ElementName=AddRoom}" />
     </Grid>

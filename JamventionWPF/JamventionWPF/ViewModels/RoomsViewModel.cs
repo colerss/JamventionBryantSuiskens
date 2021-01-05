@@ -19,14 +19,7 @@ namespace JamventionWPF.ViewModels
         private ObservableCollection<LocalRoom> _localRooms;
         private ObservableCollection<OtherRoom> _otherRooms;
 
-        public int MaxBeds<T>(ObservableCollection<T> Rooms) where T : Room
-        {
-            return Rooms.Sum(d => d.Beds);
-        }
-        public int BedsLeft<T>(ObservableCollection<T> Rooms) where T : Room
-        {
-            return Rooms.Sum(d => d.Beds) - Rooms.Sum(d => (d.Beds - d.RoomOccupancy.Count));
-        }
+     
         public RoomsViewModel()
         {
             LoadDatagrid();
@@ -46,6 +39,7 @@ namespace JamventionWPF.ViewModels
                 return "";
             }
         }
+
         #region properties
 
         public int BeesteboelBedsLeft => BedsLeft(LocalRooms);
@@ -101,6 +95,15 @@ namespace JamventionWPF.ViewModels
                 _otherRooms = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        public int MaxBeds<T>(ObservableCollection<T> Rooms) where T : Room
+        {
+            return Rooms.Sum(d => d.Beds);
+        }
+        public int BedsLeft<T>(ObservableCollection<T> Rooms) where T : Room
+        {
+            return Rooms.Sum(d => d.Beds) - Rooms.Sum(d => (d.Beds - d.RoomOccupancy.Count));
         }
 
         #endregion

@@ -23,5 +23,6 @@ namespace JamventionWPF.Views
         {
             InitializeComponent();
         }
+
     }
 }

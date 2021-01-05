@@ -116,6 +116,7 @@ namespace JamventionWPF.ViewModels
         }
         #endregion
 
+        #region UserFunctions
         void WorkshopDetails()
         {
             WorkshopDetailViewModel viewModel = new WorkshopDetailViewModel(SelectedWorkshop);
@@ -149,5 +150,6 @@ namespace JamventionWPF.ViewModels
             view.ShowDialog();
             LoadDatagrid();
         }
+        #endregion
     }
 }

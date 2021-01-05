@@ -20,6 +20,8 @@ namespace JamventionWPF.ViewModels
         private ObservableCollection<Payment> _payments;
         private ObservableCollection<WorkshopParticipant> _workshopEntries;
         private Guest importedGuest;
+
+        #region Startup Routine
         public override void LoadComboboxes()
         {
             IEnumerable<Room> localRooms = unitOfWork.RepoLocalRooms.Retrieve(x => x.Beds > x.RoomOccupancy.Count , x => x.RoomType);
@@ -31,20 +33,7 @@ namespace JamventionWPF.ViewModels
             base.LoadComboboxes();
         }
 
-        public Visibility IsParticipant
-        {
-            get
-            {
-                if (GuestDetails.RoleID == 1)
-                {
-                    return Visibility.Visible;
-                }
-                else
-                {
-                    return Visibility.Hidden;
-                }
-            }
-        }
+        
         public ParticipantDetailViewModel(Guest guest)
         {
             importedGuest = guest;
@@ -71,8 +60,23 @@ namespace JamventionWPF.ViewModels
             LoadDatagrid();
             }
         }
-
-      public ObservableCollection<WorkshopParticipant> WorkshopEntries
+        #endregion
+        #region Properties
+        public Visibility IsParticipant
+        {
+            get
+            {
+                if (GuestDetails.RoleID == 1)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
+        }
+        public ObservableCollection<WorkshopParticipant> WorkshopEntries
         {
             get
             {
@@ -151,6 +155,8 @@ namespace JamventionWPF.ViewModels
                 NotifyPropertyChanged();
             }
         }
+        #endregion
+        #region ICommand
         public override bool CanExecute(object parameter)
         {
             switch (parameter.ToString())
@@ -178,6 +184,8 @@ namespace JamventionWPF.ViewModels
 
             }
         }
+        #endregion
+
         public void SaveAll()
         {
             if (SaveChanges() > 0)

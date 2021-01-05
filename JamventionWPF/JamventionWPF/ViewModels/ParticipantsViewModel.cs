@@ -20,7 +20,6 @@ namespace JamventionWPF.ViewModels
         private Residence _residenceCreate;
         private Guest _guestCreate;
         private Guest _selectedGuest;
-        
         private ObservableCollection<Guest> _guests;
         
         #region Properties
@@ -195,7 +194,7 @@ namespace JamventionWPF.ViewModels
                 case "Details":
                     return true;
                 case "CreateGuest":
-                    return LoginViewModel.IsAuthorized ;
+                    return LoginViewModel.IsAuthorized && GuestCreate.IsGeldig() && ResidenceCreate.IsGeldig();
                 case "Delete":
                     return LoginViewModel.IsAuthorized;
             }
@@ -227,6 +226,7 @@ namespace JamventionWPF.ViewModels
         }
         #endregion
 
+        #region UserFunctions
         public void DeleteGuest()
         {
             try
@@ -328,5 +328,6 @@ namespace JamventionWPF.ViewModels
             view.DataContext = vm;
             view.Show();
         }
+        #endregion
     }
 }

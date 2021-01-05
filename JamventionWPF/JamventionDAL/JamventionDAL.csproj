@@ -72,6 +72,7 @@
     <Compile Include="Data\Partials\Invoice.cs" />
     <Compile Include="Data\Partials\JamventionEntities.cs" />
     <Compile Include="Data\Partials\Payment.cs" />
+    <Compile Include="Data\Partials\Residence.cs" />
     <Compile Include="Data\Partials\Room.cs" />
     <Compile Include="Data\Partials\TimeSlot.cs" />
     <Compile Include="Data\Partials\Workshop.cs" />
@@ -98,6 +99,10 @@
     <Compile Include="Migrations\202012101254331_AdminKeys.cs" />
     <Compile Include="Migrations\202012101254331_AdminKeys.designer.cs">
       <DependentUpon>202012101254331_AdminKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012281654390_DescriptionRequired.cs" />
+    <Compile Include="Migrations\202012281654390_DescriptionRequired.designer.cs">
+      <DependentUpon>202012281654390_DescriptionRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminKeys.cs" />
@@ -137,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012101254331_AdminKeys.resx">
       <DependentUpon>202012101254331_AdminKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012281654390_DescriptionRequired.resx">
+      <DependentUpon>202012281654390_DescriptionRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

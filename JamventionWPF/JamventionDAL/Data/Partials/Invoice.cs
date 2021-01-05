@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JamventionDAL
 {
-    public partial class Invoice
+    public partial class Invoice : BasisModel
     {
 
         [NotMapped]

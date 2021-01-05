@@ -17,12 +17,15 @@ namespace JamventionWPF
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            //Initializatie van de Messenger service, nodig om MVVM conform message boxes te weergeven 
             Messenger.Default.Register<string>(this, ShowMessage);
             LoginViewModel viewModel = new LoginViewModel();
             Views.LoginView view = new Views.LoginView();
             view.DataContext = viewModel;
             view.Show();
         }
+
+        
         private void ShowMessage(string message) => MessageBox.Show(message);
     }
 }

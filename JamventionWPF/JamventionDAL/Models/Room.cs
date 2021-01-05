@@ -37,6 +37,7 @@ namespace JamventionDAL
     [Table("OtherRooms", Schema = "JAM")]
     public partial class OtherRoom : Room
     {
+        [Required]
         public string RoomDescription { get; set; }
     }
 }
